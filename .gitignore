@@ -16,5 +16,5 @@
 !/log/.keep
 /tmp
 
-db/seeds.rb
-config/initializers/devise.rb
+db/*.rb
+config/initializers/*.rb
