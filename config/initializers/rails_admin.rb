@@ -25,13 +25,44 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
   
-  # config.included_models = ["Book", "Author", "Category", "Rating", "Order"]
+  config.included_models = ["Book", "Author", "Category", "Rating", "Order", "Discount"]
 
   config.model 'Book' do
     list do
-      configure :image do
-        hide
-      end
+      exclude_fields :image
+    end
+    edit do
+      include_fields :title, :price, :author, :category, :stock_qty, :description, :image
+    end
+  end
+
+  config.model 'Author' do
+    edit do
+      include_fields :firstname, :lastname, :biography
+    end
+  end
+
+  config.model 'Category' do
+    edit do
+      include_fields :title
+    end
+  end
+
+  config.model 'Rating' do
+    edit do
+      include_fields :check
+    end
+  end
+
+  config.model 'Order' do
+    edit do
+      include_fields :state
+    end
+  end
+
+  config.model 'Discount' do
+    edit do
+      include_fields :amount
     end
   end
 
