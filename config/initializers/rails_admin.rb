@@ -25,7 +25,7 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
   
-  config.included_models = ["Book", "Author", "Category", "Rating", "Order", "Discount"]
+  config.included_models = ["Book", "Author", "Category", "Rating", "Order", "Discount", "Delivery"]
 
   config.model 'Book' do
     list do
@@ -63,6 +63,12 @@ RailsAdmin.config do |config|
   config.model 'Discount' do
     edit do
       include_fields :amount
+    end
+  end
+
+  config.model 'Delivery' do
+    edit do
+      include_fields :price, :title
     end
   end
 
