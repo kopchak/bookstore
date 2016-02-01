@@ -1,0 +1,29 @@
+.container
+  = render "home/header"
+
+  .address
+    .name_columns_checkout
+      %h2{class: 'checkout_title'}= t('.checkout')
+      = link_to t('.address'), edit_address_path, class: 'link_address_title'
+      %h4{class: 'delivery_title'}= t('.delivery')
+      %h4{class: 'payment_title'}= t('.payment')
+      %h4{class: 'confirm_title'}= t('.confirm')
+      %h4{class: 'complete_title'}= t('.complete')
+    .order_price_column
+      %h4{class: 'billing_address'}= t('.bill_addr')
+      %h4{class: 'shipping_address'}= t('.shipp_addr')
+      %h4{class: 'order_summary'}= t('.order_summary')
+    = form_for @order, method: :patch, html: { class: 'select_delivery'} do |f|
+      - @deliveries.each do |delivery|
+        .delivery
+          = f.radio_button :delivery_id, delivery.id
+          = f.label :delivery_id, "#{delivery.title} #{t('.plus')} #{number_to_currency(delivery.price)}"
+      = f.submit t('.submit'), class: 'delivery_submit_form btn btn-primary'
+    .order_summary_info_delivery
+      %h5{class: 'sum_order_items'} #{t('.item_total_price')} #{number_to_currency(@order_items_price)}
+      %h5{class: 'delivery_price_info'} #{t('.shipping_price')} #{number_to_currency(@ups_ground_price)}
+      - if @order.discount
+        %h5{class: 'discount_deliveries'} #{t('.discount')} #{number_to_currency(@order.discount.amount)}
+        %h5{class: 'order_total_price'} #{t('.order_total_price')} #{number_to_currency(@order.total_price)}
+      - else
+        %h5{class: 'order_total_price'} #{t('.order_total_price')} #{number_to_currency(@order_items_price)}

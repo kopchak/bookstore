@@ -1,0 +1,31 @@
+.container
+  = render "home/header"
+
+  .order
+    = link_to t('.back_to_orders'), orders_path, class: 'btn btn-default btn-xs'
+    .order_title_show
+      %h2{class: 'order_number_show'} #{t('.order_number')}#{@order.id}
+      %p{class: 'order_state_show'} #{@order.state.tr('_', ' ')}
+    .order_items_confirm
+      .name_columns
+        %h5{class: "book_column"}= t('.book')
+        %h5{class: "price_column"}= t('.price')
+        %h5{class: "qty_column"}= t('.qty')
+        %h5{class: "total_column"}= t('.total')
+      - @order.order_items.each do |order_item|
+        .order_item{id: order_item.id}
+          %image{src: order_item.book.image, class: "book_ico"}
+          .block_title_description
+            %h4= order_item.book.title
+            %p= order_item.book.description
+          .block_info_item
+            %h4{class: "book_price"}= number_to_currency(order_item.book.price)
+            %h4{class: "order_item_qty_info_confirm"}= order_item.quantity
+            %h4{class: "total_book_price"}= number_to_currency(order_item.total_price)
+    .order_price_info_confirm
+      %h5 #{t('.subtotal')} #{number_to_currency(@order.order_items.sum(:price))}
+      %h5 #{t('.shipping')} #{number_to_currency(@order.delivery.price)}
+      - if @order.discount
+        %h5 #{t('.discount')} #{number_to_currency(@order.discount.amount)}
+    .order_total_price_info_confirm
+      %h5 #{t('.order_total')} #{number_to_currency(@order.total_price)}

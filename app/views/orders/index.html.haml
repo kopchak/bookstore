@@ -1,0 +1,77 @@
+.container
+  = render 'home/header'
+
+  .orders_list
+    %h2= t('.orders')
+    .order_in_progress
+      %h3{class: 'status_title'}= t('.in_progress')
+      .name_columns
+        %h5{class: "book_column"}= t('.book')
+        %h5{class: "price_column"}= t('.price')
+        %h5{class: "qty_column"}= t('.qty')
+        %h5{class: "total_column"}= t('.total')
+      - @orders_in_progress.each do |order|
+        .order_item_line{id: order.id}
+          - order.order_items.each do |order_item|
+            .book{id: order_item.book.id}
+              .book_ico
+                %image{src: order_item.book.image, class: "book_ico_orders"}
+              .book_title_and_description
+                %h4= order_item.book.title
+                %p{class: 'book_description_orders'}= order_item.book.description
+              .book_price_qty_total_price
+                %h4{class: "book_price"}= number_to_currency(order_item.book.price)
+                %h4{class: "order_item_qty_info_confirm"}= order_item.quantity
+                %h4{class: "total_book_price"}= number_to_currency(order_item.price)
+          .subtotal_price_info_index
+            %p{class: 'subtotal_price_index'} #{t('.subtotal')} #{number_to_currency(@order_items_price)}
+          - if order.discount
+            %p{class: 'discount_order_index'} #{t('.discount')} #{number_to_currency(order.discount.amount)}
+    .orders_in_queue
+      %h3{class: 'status_title'}= t('.in_queue')
+      .name_columns
+        %h5{class: "number_column"}= t('.number')
+        %h5{class: "complete_column"}= t('.completed_at')
+        %h5{class: "total_column"}= t('.total_column')
+      - @orders_in_queue.each do |order|
+        .order_line{id: order.id}
+          .order_number
+            = link_to "#{t('.order_number')}#{order.id}", order_path(order.id)
+          .order_complete_date
+            %h5= order.completed_date
+          .order_price
+            %h5= number_to_currency(order.total_price)
+          .order_view_link
+            = link_to t('.view_link'), order_path(order.id)
+    .orders_in_delivery
+      %h3{class: 'status_title'}= t('.in_delivery')
+      .name_columns
+        %h5{class: "number_column"}= t('.number')
+        %h5{class: "complete_column"}= t('.completed_at')
+        %h5{class: "total_column"}= t('.total_column')
+      - @orders_in_delivery.each do |order|
+        .order_line{id: order.id}
+          .order_number
+            = link_to "#{t('.order_number')}#{order.id}", order_path(order.id)
+          .order_complete_date
+            %h5= order.completed_date
+          .order_price
+            %h5= number_to_currency(order.total_price)
+          .order_view_link
+            = link_to t('.view_link'), order_path(order.id)
+    .orders_delivered
+      %h3{class: 'status_title'}= t('.delivered')
+      .name_columns
+        %h5{class: "number_column"}= t('.number')
+        %h5{class: "complete_column"}= t('.completed_at')
+        %h5{class: "total_column"}= t('.total_column')
+      - @orders_delivered.each do |order|
+        .order_line{id: order.id}
+          .order_number
+            = link_to "#{t('.order_number')}#{order.id}", order_path(order.id)
+          .order_complete_date
+            %h5= order.completed_date
+          .order_price
+            %h5= number_to_currency(order.total_price)
+          .order_view_link
+            = link_to t('.view_link'), order_path(order.id)

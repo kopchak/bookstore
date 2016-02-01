@@ -1,0 +1,32 @@
+.container
+  = render "header"
+
+  .address
+    .name_columns_checkout
+      %h2{class: 'checkout_title'}= t('.checkout')
+      = link_to t('.address'), edit_address_path, class: 'link_address_title'
+      = link_to t('.delivery'), deliveries_path, class: 'link_address_title'
+      %h4{class: 'payment_title'}= t('.payment')
+      %h4{class: 'confirm_title'}= t('.confirm')
+      %h4{class: 'complete_title'}= t('.complete')
+    .order_price_column
+      %h4{class: 'credit_card_column'}= t('.credit_card')
+      %h4{class: 'shipping_address'}= t('.shipp_addr')
+      %h4{class: 'order_summary_credit_card'}= t('.order_summary')
+    = simple_form_for @credit_card do |f|
+      = f.input :number, label: false, placeholder: 'Card Number', input_html: {class: 'input_form', minlength: 16, maxlength: 16}
+      = f.label "#{t('.exp_date')}:"
+      .expiration_date
+        = select_month(1, use_month_numbers: true, prefix: 'credit_card', field_name: 'expiration_month')
+        = select_year(Date.today, start_year: 2016, end_year: 2100, prefix: 'credit_card', field_name: 'expiration_year')
+      .credit_card
+        = f.input :cvv, label: false, placeholder: 'Card Code', input_html: {class: 'input_form_card_code', minlength: 3, maxlength: 3}
+        = link_to t('.whats_cvv'), t('.whats_cvv_link'), target: '_blank', class: 'link_credit_card_info'
+      = f.submit t('.submit'), class: 'btn btn-primary'
+    .order_summary_info_credit_card
+      %h5 #{t('.item_total')} #{number_to_currency(@order_items_price)}
+      %h5{class: 'delivery_price'} #{t('.shipping')} #{number_to_currency(@order.delivery.price)}
+      - if @order.discount
+        %h5 #{t('.discount')} #{number_to_currency(@order.discount.amount)}
+      %h5 #{t('.order_total')} #{number_to_currency(@order.total_price)}
+      

@@ -1,0 +1,25 @@
+.container
+  = render "home/header"
+
+  .books
+    .shop
+      .links_to_home_shop
+        = link_to t('.home'), root_path, class: 'btn btn-default btn-xs'
+        %image{src: '/assets/arrow-right.png', class: 'doble_arrow_img'}
+        = link_to t('.shop'), books_path, class: 'btn btn-default btn-xs'
+        %image{src: '/assets/arrow-right.png', class: 'doble_arrow_img'}
+        = link_to "#{@category.title}", category_path(@category.id), class: 'btn btn-default btn-xs'
+      %h1 Categories - #{@category.title}
+      - @books.each do |book|
+        .book{id: book.id}
+          %image{src: book.image, class: 'book_img'}
+          = link_to "#{book.title}", book_path(book)
+          %strong= number_to_currency(book.price)
+      .pagination
+        = paginate @books
+    .categories
+      %h3{class: 'column_title_categories'}= t('.book_categories')
+      %ul
+        - @categories.each do |category|
+          %li{id: "#{category.id}"}
+            = link_to "#{category.title}", category_path(category), class: 'btn btn-default btn-xs'

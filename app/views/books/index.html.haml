@@ -1,0 +1,21 @@
+.container
+  = render "home/header"
+
+  .books
+    .shop
+      %h1= t('.shop_title')
+      - @books.each do |book|
+        .book{id: book.id}
+          %image{src: book.image, class: 'book_img'}
+          = link_to "#{book.title}", book_path(book)
+          %strong= number_to_currency(book.price)
+      .pagination
+        = paginate @books
+    .categories
+      %h3{class: 'column_title_categories'}= t('.categories')
+      %ul
+        - @categories.each do |category|
+          %li{id: "#{category.id}"}
+            = link_to "#{category.title}", category_path(category), class: 'btn btn-default btn-xs'
+
+

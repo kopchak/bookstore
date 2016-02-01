@@ -1,0 +1,59 @@
+// Place all the styles related to the Addresses controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.container
+  .address
+    float: left
+    margin-bottom: 40px
+    width: 100%
+    padding: 20px 15px
+    border-radius: 10px
+    background-color: rgba(255,255,255,0.7)
+    .name_columns_checkout
+      width: 100%
+      margin-bottom: 5%
+      .checkout_title
+        display: inline
+        margin: 0 10% 0 0
+      .address_title, .delivery_title, .payment_title, .confirm_title, .complete_title
+        @extend .checkout_title
+        margin: 0 25px 0 0
+      .address_title
+        text-decoration: underline
+      .billing_address, .shipping_address, .order_summary
+        @extend .checkout_title
+        margin: 0
+        .order_summary
+          float: right
+      .shipping_address
+        margin: 0 16%
+    .address_and_order_price_columns
+      @extend .name_columns_checkout
+      margin-bottom: 2%
+    .billing_address_form
+      float: left
+      width: 23%
+      .input_form
+        width: 70%
+        margin: 0 0 15px 0
+        padding: 5px 10px
+        border: 1px solid black
+        background-color: white
+      .submit_form
+        @extend .input_form
+        margin-top: 15px
+    .show_shipping_address_form
+      float: left
+      width: 23%
+      margin: 0 0 50px 90px
+      .checkbox_use_billing
+        float: left
+    .shipping_address_form
+      @extend .billing_address_form
+      margin-left: 90px
+      display: none
+    .order_summary_info
+      float: left
+      margin-left: 9%
+    .next
+      clear: both

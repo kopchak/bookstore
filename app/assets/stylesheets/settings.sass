@@ -1,0 +1,46 @@
+// Place all the styles related to the Settings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.container
+  .settings
+    display: table
+    margin-bottom: 50px
+    padding: 10px 15px
+    border-radius: 10px
+    background-color: rgba(255, 255, 255, 0.7)
+    .address_column_title
+      border-bottom: 2px solid black
+    .billing_address_settings, .shipping_address_settings, .email_settings, .password_settings
+      width: 49%
+      float: left
+      margin-right: 10px
+      .edit_address
+        margin-top: 20px
+        width: 50%
+        .input_form
+          width: 70%
+          margin: 0 0 15px 0
+          padding: 5px 10px
+          border: 1px solid black
+          background-color: white
+        .save_settings
+          display: block
+    .email_settings, .password_settings
+      .edit_customer
+        @extend .edit_address
+    .password_settings
+      .update_password
+        width: 43%
+        .input_form
+          padding-left: 5px
+          margin-bottom: 5px
+        .save_settings
+          display: block
+          margin-top: 10px
+    .remove_account
+      clear: both
+      padding-top: 10px
+      .form_for_remove_account
+        .button_to
+          float: left
+          margin-right: 30px

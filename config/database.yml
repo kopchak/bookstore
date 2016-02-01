@@ -1,0 +1,24 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: bookstore_development
+  pool: 5
+  username: den
+  password: 'qwerty123'
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: bookstore_test
+  pool: 5
+  username: den
+  password: 'qwerty123'
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: bookstore_production
+  pool: 5
+  host: localhost
+  username: den
+  password: 'qwerty123'

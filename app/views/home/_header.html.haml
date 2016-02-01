@@ -1,0 +1,16 @@
+.header
+  %h1{class: "project_name"} The Bookstore
+  .home
+    = link_to t('.home_link'), root_path, class: 'link_to_home btn btn-primary'
+    = link_to t('.shop_link'), books_path, class: 'btn btn-primary'
+  .cart
+    %image{src: '/assets/shopping_cart.png'}
+    = link_to "#{t('.cart')}(#{@order_items_count}) #{number_to_currency(@order_items_price)}", order_items_path
+  .user_tools
+    - if current_user
+      = link_to t('.settings_link'), settings_path, class: 'link_to_settings btn btn-primary'
+      = link_to t('.orders_link'), orders_path, class: 'link_to_orders btn btn-primary'
+      = link_to t('.sign_out_link'), destroy_customer_session_path, method: :delete, class: 'btn btn-primary'
+    - else
+      = link_to t('.sign_in_link'), new_customer_session_path, class: 'link_to_settings btn btn-primary'
+      = link_to t('.sign_up_link'), new_customer_registration_path, class: 'btn btn-primary'

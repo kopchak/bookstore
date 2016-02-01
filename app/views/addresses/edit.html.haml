@@ -1,0 +1,50 @@
+.container
+  = render "home/header"
+
+  .address
+    .name_columns_checkout
+      %h2{class: 'checkout_title'}= t('.checkout')
+      %h4{class: 'address_title'}= t('.address')
+      %h4{class: 'delivery_title'}= t('.delivery')
+      %h4{class: 'payment_title'}= t('.payment')
+      %h4{class: 'confirm_title'}= t('.confirm')
+      %h4{class: 'complete_title'}= t('.complete')
+    .address_and_order_price_columns
+      %h4{class: 'billing_address'}= t('.billing_address')
+      %h4{class: 'shipping_address'}= t('.shipping_address')
+      %h4{class: 'order_summary'}= t('.order_summary')
+    = simple_form_for current_user, url: address_path, method: :patch do |m|
+      .billing_address_form
+        = m.simple_fields_for :billing_address do |f|
+          = f.input :firstname, label: false, placeholder: 'First name', input_html: {class: 'input_form'}
+          = f.input :lastname, label: false, placeholder: 'Last name', input_html: {class: 'input_form'}
+          = f.input :street_address, label: false, placeholder: 'Street address', input_html: {class: 'input_form'}
+          = f.input :city, label: false, placeholder: 'City', input_html: {class: 'input_form'}
+          = f.country_select("country", {selected: "US"}, {class: 'input_form'})
+          = f.input :zipcode, label: false, placeholder: 'Zipcode', input_html: {class: 'input_form'}
+          = f.input :phone, label: false, placeholder: 'Phone number', input_html: {class: 'input_form'}
+          = m.submit t('.submit'), class: 'btn btn-primary'
+      .show_shipping_address_form
+        = check_box_tag 'use_billing_address', true, true, class: 'checkbox_use_billing'
+        %p= t('.use_bill_addr')
+      .shipping_address_form
+        = m.simple_fields_for :shipping_address do |f|
+          = f.text_field :firstname, placeholder: 'First name', class: 'input_form'
+          = f.text_field :lastname, placeholder: 'Last name', class: 'input_form'
+          = f.text_field :street_address, placeholder: 'Street address', class: 'input_form'
+          = f.text_field :city, placeholder: 'City', class: 'input_form'
+          = f.country_select("country", { include_blank: 'Country' }, {class: 'input_form'})
+          = f.number_field :zipcode, placeholder: 'Zipcode', class: 'input_form'
+          = f.telephone_field :phone, placeholder: 'Phone number', class: 'input_form'
+    .order_summary_info
+      %h5 #{t('.item_total')} #{number_to_currency(@order_items_price)}
+      - if @order.discount
+        %h5 #{t('.discount')} #{number_to_currency(@order.discount.amount)}
+        %h5 #{t('.order_total')} #{number_to_currency(@order.total_price)}
+      - else
+        %h5 #{t('.order_total')} #{number_to_currency(@order_items_price)}
+
+
+
+
+

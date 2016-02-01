@@ -1,0 +1,21 @@
+.container
+
+  = render "header"
+
+  .content.home
+    %ul.bxslider
+      - @bestsellers_books.each do |book|
+        %li
+          .book{id: book.id}
+            %h3 #{book.title} #{t('.by')} #{book.author.firstname} #{book.author.lastname}
+            %image{class: "image_book", src: book.image}
+            %p{class: "description_book"}= book.description
+            = form_for @order_item, html: {class: 'book_to_cart'} do |f|
+              %h3{class: "book_price"}= number_to_currency(book.price)
+              = f.number_field :quantity, min: 1, max: book.stock_qty, value: 1, class: "home_books_qty"
+              = f.text_field :book_id, value: book.id, type: 'hidden'
+              = f.text_field :price, value: book.price, type: 'hidden'
+              = f.submit t('.add_to_cart')
+  .footer
+    %h3= t(".greeting")
+    

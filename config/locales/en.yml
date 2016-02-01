@@ -1,0 +1,223 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  addresses:
+    edit:
+      checkout: Checkout
+      address: ADDRESS
+      delivery: DELIVERY
+      payment: PAYMENT
+      confirm: CONFIRM
+      complete: COMPLETE
+      billing_address: BILLING ADDRESS
+      shipping_address: SHIPPING ADDRESS
+      order_summary: ORDER SUMMARY
+      submit: SAVE AND CONTINUE
+      use_bill_addr: Use Billing Address
+      item_total: "ITEM TOTAL:"
+      discount: "DISCOUNT:"
+      order_total: "ORDER TOTAL:"
+  books:
+    index:
+      categories: Shop by categories
+      shop_title: Shop
+    show:
+      submit: Add to cart
+      rating_qty: from 5
+      by: by
+      add_review: Add review for this book
+  categories:
+    show:
+      home: Home
+      shop: Shop
+      book_categories: Shop by categories
+  credit_cards:
+    header:
+      home: Home
+      shop: Shop
+      cart: Cart
+      settings: Settings
+      sign_out: Sign out
+    edit:
+      checkout: Checkout
+      address: ADDRESS
+      delivery: DELIVERY
+      payment: PAYMENT
+      confirm: CONFIRM
+      complete: COMPLETE
+      credit_card: CREDIT CARD
+      shipp_addr: SHIPPING ADDRESS
+      order_summary: ORDER SUMMARY
+      exp_date: Expiration date
+      whats_cvv: (What's this)
+      whats_cvv_link: "https://www.google.com.ua/webhp?sourceid=chrome-instant&ion=1&espv=2&es_th=1&ie=UTF-8#q=CVV"
+      submit: SAVE AND CONTINUE
+      item_total: "ITEM TOTAL:"
+      shipping: "SHIPPING:"
+      discount: "DISCOUNT:"
+      order_total: "ORDER TOTAL:"
+  deliveries:
+    index:
+      checkout: Checkout
+      address: ADDRESS
+      delivery: DELIVERY
+      payment: PAYMENT
+      confirm: CONFIRM
+      complete: COMPLETE
+      bill_addr: BILLING ADDRESS
+      shipp_addr: SHIPPING ADDRESS
+      order_summary: ORDER SUMMARY
+      plus: "+"
+      item_total_price: "ITEM TOTAL:"
+      shipping_price: "SHIPPING:"
+      discount: "DISCOUNT:"
+      order_total_price: "ORDER TOTAL:"
+      submit: SAVE AND CONTINUE
+  home:
+    header:
+      home_link: Home
+      shop_link: Shop
+      settings_link: Settings
+      orders_link: Orders
+      sign_out_link: Sign out
+      sign_in_link: Sign in
+      sign_up_link: Sign up
+      cart: "Cart:"
+    index:
+      app_name: The Bookstore
+      greeting: "Welcome to our amazing Bookstore! Choose anything you wish, we'll ship it anywhere!"
+      book_title: Book title by (author name)
+      add_to_cart: Add to cart
+      by: by
+  order_items:
+    header:
+      home_link: Home
+      shop_link: Shop
+      settings_link: Settings
+      orders_link: Orders
+      sign_out_link: Sign out
+      sign_in_link: Sign in
+      sign_up_link: Sign up
+    index:
+      cart: Cart
+      book: BOOK
+      qty: QTY
+      total: TOTAL
+      delete_order_item: X
+      subtotal: "SUBTOTAL:"
+      discount: "DISCOUNT:"
+      btn_empty_cart: EMPTY CART
+      btn_continue_shipping: CONTINUE SHOPING
+      submit_dicount: UPDATE
+      checkout: CHECKOUT
+  orders:
+    edit:
+      checkout: Checkout
+      address: ADDRESS
+      delivery: DELIVERY
+      payment: PAYMENT
+      confirm: CONFIRM
+      complete: COMPLETE
+      bill_addr: Billing address
+      shipp_addr: Shipping address
+      edit: (edit)
+      phone: Phone
+      shipments: Shipments
+      payment_info: Payment information
+      stars: "**** **** ****"
+      slash: "/"
+      book: BOOK
+      price: PRICE
+      qty: QTY
+      total: TOTAL
+      subtotal: "SUBTOTAL:"
+      shipping: "SHIPPING:"
+      discount: "DISCOUNT:"
+      order_total: "ORDER TOTAL:"
+      place_order: PLACE ORDER
+    index:
+      orders: Orders
+      in_progress: In progress
+      book: BOOK
+      price: PRICE
+      qty: QTY
+      total: TOTAL
+      subtotal: "SUBTOTAL:"
+      discount: "DISCOUNT:"
+      in_queue: Waiting for processing
+      number: Number
+      completed_at: Completed at
+      total_column: Total
+      in_delivery: In delivery
+      order_number: "Order #"
+      view_link: view
+      delivered: Delivered
+    overview:
+      order_number: "Order #"
+      confirm: CONFIRM
+      bill_addr: Billing address
+      shipp_addr: Shipping address
+      shipments: Shipments
+      payment_info: Payment information
+      stars: "**** **** ****"
+      slash: '/'
+      phone: Phone
+      book: BOOK
+      price: PRICE
+      qty: QTY
+      total: TOTAL
+      subtotal: "SUBTOTAL:"
+      shipping: "SHIPPING:"
+      discount: "DISCOUNT:"
+      order_total: "ORDER TOTAL:"
+      go_store: GO BACK TO STORE
+    show:
+      back_to_orders: "< Back to orders"
+      order_number: "Order #"
+      book: BOOK
+      price: PRICE
+      qty: QTY
+      total: TOTAL
+      subtotal: "SUBTOTAL:"
+      shipping: "SHIPPING:"
+      discount: "DISCOUNT:"
+      order_total: "ORDER TOTAL:"
+  ratings:
+    new:
+      new_review: 'New review for'
+      rating: "Rating:"
+      title: "Title:"
+      text_review: "Text review:"
+      submit: ADD
+      cancel: Cancel
+      or: or
+  settings:
+    index:
+      settings: Settings
+      bill_addr: Billing address
+      shipp_addr: Shipping address
+      submit: SAVE
+      email: Email
+      passwrd: Password
+      rmv_account_title: Remove my account
+      btn_rmv_account: Please remove my account
+      checkbox_confirm_btn_rmv: I understand that all data will be lost

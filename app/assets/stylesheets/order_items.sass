@@ -1,0 +1,73 @@
+// Place all the styles related to the OrderItems controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.container
+  .order_items
+    float: left
+    width: 100%
+    padding: 10px
+    border-radius: 10px 10px 0 0
+    border-bottom: 2px dotted black
+    background-color: rgba(255, 255, 255, 0.7)
+    .cart_title_order_item
+      margin: 0
+    .name_columns
+      .book_column 
+        display: inline
+        margin: 0% 34%
+      .price_column, .qty_column, .total_column
+        display: inline
+        margin-left: 53px
+    .order_item
+      float: left
+      margin: 1% 0%
+      border-radius: 10px
+      padding: 20px 0
+      border: 1px solid #D6D6D6
+      .book_ico
+        float: left
+        width: 150px
+      .block_title_description
+        width: 63%
+        float: left
+        .description_order_item
+          height: 80px
+          overflow: hidden
+      .book_price
+        float: left
+      .order_item_books_qty
+        @extend .book_price
+        margin: 5px 41px 0% 4%
+        text-align: center
+        width: 40px
+      .total_book_price
+        @extend .book_price
+        width: 56px
+      .delete_item
+        margin: 8px 0px 0 10px
+        display: block
+        float: left
+  .tools
+    clear: both
+    padding: 2% 0
+    margin: 2% 0%
+    .total_price
+      margin-bottom: 20px
+      .subtotal
+        margin-left: 83%
+        display: inline
+      .total_order_price
+        display: inline
+    .control_panel
+      .clear, .back_to_shop, .confirm
+        display: inline
+        margin-right: 5px
+      .new_discount, .discount_code
+        display: inline
+        .coupon_code
+          @extend .clear
+          margin-left: 44%
+          padding: 1px 9px
+          width: 11%
+        .update_discount
+          height: 30px

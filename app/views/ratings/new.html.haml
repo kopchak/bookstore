@@ -1,0 +1,21 @@
+.container
+  = render "home/header"
+
+  .new_review
+    %h2
+      = t('.new_review')
+      = link_to "#{@book.title}", book_path(@book)
+    = simple_form_for [@book, @rating] do |f|
+      %p
+        #{t('.rating')}
+        = f.input :rating, label: false, collection: 1..5, selected: 5
+      %p #{t('.title')}
+      = f.input :title, label: false
+      %p{class: 'text_review_title'}= t('.text_review')
+      = f.input :review, label: false, input_html: {class: 'text_review_area'}
+      = f.text_field :customer_id, value: current_user.id, type: 'hidden'
+      %p
+        = f.submit t('.submit'), class: 'btn btn-primary'
+        #{t('.or')}
+        = link_to t('.cancel'), book_path(@book), class: 'btn btn-primary'
+      

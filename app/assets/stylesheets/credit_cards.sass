@@ -1,0 +1,39 @@
+// Place all the styles related to the CreditCards controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.container
+  .address
+    .order_price_column
+      .order_summary_credit_card
+        margin-left: 38px
+    .credit_card_column, .order_summary_credit_card
+      display: inline
+    .edit_credit_card
+      width: 23%
+      float: left
+      .input_form
+        width: 70%
+        margin: 0 0 15px 0
+        padding: 5px 10px
+        border: 1px solid black
+        background-color: white
+      #credit_card_expiration_month
+        @extend .input_form
+        width: 21%
+      #credit_card_expiration_year
+        @extend .input_form
+        width: 30%
+      .credit_card
+        .input_form_card_code
+          @extend .input_form
+          width: 40%
+          float: left
+        .link_credit_card_info
+          display: block
+          margin-left: 10px
+          padding-top: 6px
+          float: left
+    .order_summary_info_credit_card
+      float: left
+      margin-left: 40%
+      padding-left: 6px

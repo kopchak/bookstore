@@ -1,0 +1,42 @@
+// Place all the styles related to the books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container
+  .books
+    float: left
+    .shop
+      position: relative
+      width: 900px
+      float: left
+      background-color: rgba(255, 255, 255, 0.7)
+      padding-left: 10px
+      border-radius: 10px
+      .book
+        float: left
+        margin: 2% 4%
+        transition: all 0.5s linear
+        transition-delay: 0.3s
+        a
+          display: block
+          overflow: hidden
+          text-overflow: ellipsis
+          margin: 10px 0 5px 25px
+          width: 150px
+          height: 40px
+        &:hover
+          background-color: rgba(232, 244, 255, 0.7)
+          -webkit-transition: all 0.5s ease
+        strong
+          margin: 0 0 0 25px
+      div.pagination
+        display: block
+        width: 100%
+        clear: both
+        text-align: center
+    .categories
+      float: left
+      padding: 10px
+      border-radius: 10px
+      margin-left: 10px
+      background-color: rgba(255, 255, 255, 0.7)
