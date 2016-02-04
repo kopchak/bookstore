@@ -3,7 +3,7 @@ class Customer < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
+         :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :orders
@@ -11,9 +11,6 @@ class Customer < ActiveRecord::Base
   has_many :credit_cards
   belongs_to :billing_address, class_name: "Address"
   belongs_to :shipping_address, class_name: "Address"
-
-  validates :email, :encrypted_password, presence: true
-  validates :email, uniqueness: true
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |customer|

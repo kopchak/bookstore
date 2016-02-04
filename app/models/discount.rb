@@ -1,7 +1,7 @@
 class Discount < ActiveRecord::Base
-  after_initialize :create_code
+  before_save :create_code
   has_many :orders
-  validates :code, :amount, presence: true
+  validates :amount, presence: true
 
   private
     def create_code

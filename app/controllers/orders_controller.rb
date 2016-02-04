@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   load_and_authorize_resource
+  before_action :check_order_id, :check_current_user, only: :index
   before_action :check_payment, only: :edit
 
   def index
