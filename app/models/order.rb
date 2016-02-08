@@ -2,9 +2,9 @@ class Order < ActiveRecord::Base
   include AASM
   belongs_to :customer
   belongs_to :delivery
-  belongs_to :discount
-  belongs_to :credit_card
-  has_many   :order_items
+  belongs_to :discount, dependent: :destroy
+  belongs_to :credit_card, dependent: :destroy
+  has_many   :order_items, dependent: :destroy
   
   after_create :create_credit_card
 

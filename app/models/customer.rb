@@ -7,9 +7,9 @@ class Customer < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :orders
-  has_many :ratings
-  belongs_to :billing_address, class_name: "Address"
-  belongs_to :shipping_address, class_name: "Address"
+  has_many :ratings, dependent: :destroy
+  belongs_to :billing_address, class_name: "Address", dependent: :destroy
+  belongs_to :shipping_address, class_name: "Address", dependent: :destroy
 
   after_create :create_address
 
