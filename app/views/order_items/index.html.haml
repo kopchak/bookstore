@@ -6,6 +6,7 @@
     %h1{class: 'cart_title_order_item'}= t('.cart')
     .name_columns
       %h5{class: "book_column"}= t('.book')
+      %h5{class: "price_column"}= t('.price')
       %h5{class: "qty_column"}= t('.qty')
       %h5{class: "total_column"}= t('.total')
     - @order_items.each do |order_item|
@@ -31,7 +32,7 @@
       = link_to t('.btn_empty_cart'), clear_cart_order_items_path, method: :delete, class: "clear btn btn-primary"
       = link_to t('.btn_continue_shipping'), books_path, method: :get, class: "back_to_shop btn btn-primary"
       = simple_form_for @discount, url: add_discount_order_path(@order.id), method: :patch do |f|
-        = f.input :code, as: :integer, label: false, placeholder: 'coupon code', input_html: { class: "coupon_code" }
+        = f.input :code, label: false, placeholder: 'coupon code', minlength: 6, maxlength: 6, input_html: { class: "coupon_code" }
         = f.submit t('.submit_dicount'), class: 'update_discount btn btn-primary'
       - unless @order_items.empty?
         = link_to t('.checkout'), edit_address_path, method: :get, class: "confirm btn btn-primary"

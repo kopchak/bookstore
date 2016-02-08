@@ -8,9 +8,15 @@ class Customer < ActiveRecord::Base
 
   has_many :orders
   has_many :ratings
-  has_many :credit_cards
   belongs_to :billing_address, class_name: "Address"
   belongs_to :shipping_address, class_name: "Address"
+
+  after_create :create_address
+
+  accepts_nested_attributes_for :billing_address
+  accepts_nested_attributes_for :shipping_address
+
+  validates :email, :encrypted_password, presence: true
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |customer|
@@ -26,4 +32,12 @@ class Customer < ActiveRecord::Base
       end
     end
   end
+  
+  private
+  def create_address
+    self.build_billing_address
+    self.build_shipping_address
+    self.save
+  end
+
 end

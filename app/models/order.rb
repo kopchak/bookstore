@@ -5,8 +5,10 @@ class Order < ActiveRecord::Base
   belongs_to :discount
   belongs_to :credit_card
   has_many   :order_items
+  
+  after_create :create_credit_card
 
-  # validates :total_price, :completed_date, :state, presence: true
+  accepts_nested_attributes_for :credit_card
 
   aasm column: :state do
     state :in_progress, initial: true
@@ -32,4 +34,13 @@ class Order < ActiveRecord::Base
     end
   end
 
+  private
+  def state_enum
+    ['in_progress', 'in_queue', 'delivered', 'canceled']
+  end
+
+  def create_credit_card
+    self.build_credit_card
+    self.save
+  end
 end

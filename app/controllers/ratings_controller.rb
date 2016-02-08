@@ -1,11 +1,9 @@
 class RatingsController < ApplicationController
+  before_action :get_order_info, only: :new
   load_and_authorize_resource
 
   def new
     @book = Book.find(params[:book_id])
-    order = Order.find(cookies[:order_id])
-    @order_items_count = order.order_items.sum(:quantity)
-    @order_items_price = order.order_items.sum(:price)
   end
 
   def create
@@ -20,7 +18,7 @@ class RatingsController < ApplicationController
   end
 
   private
-    def rating_params
-      params.require(:rating).permit(:rating, :title, :review, :customer_id)
-    end
+  def rating_params
+    params.require(:rating).permit(:rating, :title, :review, :customer_id)
+  end
 end

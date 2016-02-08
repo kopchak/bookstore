@@ -120,6 +120,7 @@ en:
     index:
       cart: Cart
       book: BOOK
+      price: PRICE
       qty: QTY
       total: TOTAL
       delete_order_item: X
@@ -210,8 +211,8 @@ en:
       submit: ADD
       cancel: Cancel
       or: or
-  settings:
-    index:
+  customers:
+    edit:
       settings: Settings
       bill_addr: Billing address
       shipp_addr: Shipping address

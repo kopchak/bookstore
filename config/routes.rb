@@ -12,9 +12,7 @@ Rails.application.routes.draw do
     delete :clear_cart, on: :collection
   end
 
-  resources :settings, only: :index do
-    patch :update_address,  on: :member
-  end
+  resources :customers, only: [:edit, :update]
 
   resources :books, only: [:index, :show]  do
     resources :ratings, only: [:new, :create]

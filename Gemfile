@@ -49,7 +49,7 @@ gem 'carrierwave'
 
 group :development, :test do
   gem 'byebug'
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails', '~> 3.1'
   gem 'factory_girl_rails'
   gem 'capybara'
 end
@@ -57,7 +57,7 @@ end
 group :test do
   gem 'faker'
   gem 'database_cleaner'
-  gem 'shoulda-matchers', '~> 3.0'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do

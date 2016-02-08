@@ -37,7 +37,7 @@
       .credit_card_info_block
         %h4
           #{t('.payment_info')}
-          = link_to t('.edit'), edit_credit_card_path
+          = link_to t('.edit'), edit_credit_card_path(@order.credit_card.id)
         %p #{t('.stars')} #{@order.credit_card.number.last(4)}
         %p #{@order.credit_card.expiration_month}#{t('.slash')}#{@order.credit_card.expiration_year}
     .order_items_confirm

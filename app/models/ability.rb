@@ -4,30 +4,33 @@ class Ability
   def initialize(user)
     user ||= Customer.new
 
-    if user.id && user.admin?
-      can :access, :rails_admin
+    if user.admin
       can :manage, :all
-    elsif user.id
-      can :read, :all
-      can :manage, Rating
-      can :manage, Address
-      can :manage, CreditCard
-      can :manage, Delivery
-      can :manage, Order
-      can :manage, OrderItem
+    end
 
+    if user.id
+      can [:index, :show], Book
+      can :show, Category
+      can :index, Delivery
+      can :manage, CreditCard, customer_id: user.id
+      can :manage, Order, customer_id: user.id
+      can [:edit, :update], Customer, id: user.id
+      can :manage, OrderItem
+      can :read, Rating, check: true
+      can :create, Rating
+
+      can [:edit, :update], Address do |a|
+        a.try(:user) == user
+      end
     end
 
     unless user.id
-      can :read, Book
-      can :read, OrderItem
-      can :read, Category
-      can :read, Rating
+      can [:index, :show], Book
+      can :show, Category
+      can :manage, OrderItem
+      can :add_discount, Order
+      can :read, Rating, check: true
     end
-
-    # if user.email == "qwerty@i.ua"
-    #   can :manage, :all
-    # end
 
     # Define abilities for the passed in user here. For example:
     #

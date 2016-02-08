@@ -4,10 +4,3 @@
 
 $(document).ready ->
   $(".bxslider").bxSlider()
-
-  $('.home_books_qty').change ->
-    book_qty = $(this).val()
-    book_price = $(this).prev('.book_price').text().replace(/[^0-9.]/g, '')
-    item_price = (book_price * book_qty).toFixed(2)
-    $(this).next('#order_item_book_id').next('#order_item_price').val(item_price)
-  false

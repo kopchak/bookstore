@@ -30,30 +30,43 @@
     .address_and_order_price_columns
       @extend .name_columns_checkout
       margin-bottom: 2%
-    .billing_address_form
+    .update_address_form
       float: left
-      width: 23%
-      .input_form
-        width: 70%
-        margin: 0 0 15px 0
-        padding: 5px 10px
-        border: 1px solid black
-        background-color: white
-      .submit_form
-        @extend .input_form
-        margin-top: 15px
-    .show_shipping_address_form
-      float: left
-      width: 23%
-      margin: 0 0 50px 90px
-      .checkbox_use_billing
+      width: 55%
+      .billing_address_form
         float: left
-    .shipping_address_form
-      @extend .billing_address_form
-      margin-left: 90px
-      display: none
+        width: 42%
+        .input_form
+          width: 70%
+          margin: 0 0 15px 0
+          padding: 5px 10px
+          border: 1px solid black
+          background-color: white
+        .submit_form
+          @extend .input_form
+          margin-top: 15px
+      .block_shipping_form
+        float: left
+        width: 42%
+        margin-left: 86px
+        .shipping_address_form
+          float: left
+          width: 100%
+          display: none
+          .input_form
+            width: 70%
+            margin: 0 0 15px 0
+            padding: 5px 10px
+            border: 1px solid black
+            background-color: white
+          // margin-left: 90px
+          // display: none
+        .show_shipping_address_form
+          // float: left
+          // width: 23%
+          // margin: 0 0 50px 90px
+          .checkbox_use_billing
+            float: left
     .order_summary_info
       float: left
-      margin-left: 9%
-    .next
-      clear: both
+      margin-left: 106px

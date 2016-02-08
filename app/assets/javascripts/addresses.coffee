@@ -3,7 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
   $('.checkbox_use_billing').change ->
-    $(this).parent('.show_shipping_address_form').hide(200)
-    $('.shipping_address_form').show(200)
-    # console.log('changed')
+    if $(this).attr('checked')
+      $(this).removeAttr('checked')
+      $('.shipping_address_form').show(200)
+    else
+      $(this).attr('checked', 'checked')
+      $('.shipping_address_form').hide(200)
   false

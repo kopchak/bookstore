@@ -62,12 +62,9 @@ ActiveRecord::Schema.define(version: 20160129103601) do
     t.string   "expiration_month"
     t.string   "expiration_year"
     t.string   "cvv"
-    t.integer  "customer_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
-
-  add_index "credit_cards", ["customer_id"], name: "index_credit_cards_on_customer_id", using: :btree
 
   create_table "customers", force: :cascade do |t|
     t.boolean  "admin",                  default: false
@@ -154,7 +151,6 @@ ActiveRecord::Schema.define(version: 20160129103601) do
 
   add_foreign_key "books", "authors"
   add_foreign_key "books", "categories"
-  add_foreign_key "credit_cards", "customers"
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "credit_cards"

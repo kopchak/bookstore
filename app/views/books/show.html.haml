@@ -8,7 +8,6 @@
       %h3{class: "book_price"} #{number_to_currency(@book.price)}
       = f.number_field :quantity, min: 1, max: @book.stock_qty, value: 1, class: "books_qty_show"
       = f.text_field :book_id, value: @book.id, type: 'hidden'
-      = f.text_field :price, value: @book.price, type: 'hidden'
       = f.submit t('.submit')
     %p{class: "description_book"}= @book.description
   .reviews

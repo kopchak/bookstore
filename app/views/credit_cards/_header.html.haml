@@ -8,5 +8,5 @@
     = link_to "#{t('.cart')}:(#{@order_items_count}) #{number_to_currency(@order_items_price)}", order_items_path
   .user_tools
     - if current_user
-      = link_to t('.settings'), settings_path, class: 'link_to_settings btn btn-primary'
+      = link_to t('.settings'), edit_customer_path(current_user.id), class: 'link_to_settings btn btn-primary'
       = link_to t('.sign_out'), destroy_customer_session_path, method: :delete, class: 'btn btn-primary'
