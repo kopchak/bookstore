@@ -8,15 +8,20 @@ class CustomersController < ApplicationController
   end
 
   def update
-    if current_user.billing_address.id == params[:address][:id].to_i || current_user.shipping_address.id == params[:address][:id].to_i
-      address = Address.find(params[:address][:id])
-      address.update(address_params)
+    if params[:billing_address]
+      current_user.billing_address.update(billing_params)
+    elsif params[:shipping_address]
+      current_user.shipping_address.update(shipping_params)
     end
     redirect_to :back
   end
 
   private
-  def address_params
-    params.require(:address).permit(:firstname, :lastname, :street_address, :city, :country, :zipcode, :phone, :id)
+  def billing_params
+    params.require(:billing_address).permit(:firstname, :lastname, :street_address, :city, :country, :zipcode, :phone, :id)
+  end
+
+  def shipping_params
+    params.require(:shipping_address).permit(:firstname, :lastname, :street_address, :city, :country, :zipcode, :phone, :id)
   end
 end

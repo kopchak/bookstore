@@ -4,7 +4,7 @@ class Discount < ActiveRecord::Base
   validates :amount, presence: true
 
   private
-    def create_code
-      self.code = rand(100000..999999)
-    end
+  def create_code
+    self.code = rand(100000..999999)
+  end
 end
