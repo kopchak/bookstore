@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 
   def check_order_id
     unless cookies[:order_id]
-      cookies[:order_id] = Order.create.id
+      cookies[:order_id] = { value: Order.create.id, expires: 1.year.from_now }
     end
   end
 

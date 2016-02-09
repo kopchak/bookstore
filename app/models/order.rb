@@ -34,11 +34,11 @@ class Order < ActiveRecord::Base
     end
   end
 
-  private
   def state_enum
     ['in_progress', 'in_queue', 'delivered', 'canceled']
   end
 
+  private
   def create_credit_card
     self.build_credit_card
     self.save
