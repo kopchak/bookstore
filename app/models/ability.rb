@@ -4,6 +4,12 @@ class Ability
   def initialize(user)
     user ||= Customer.new
 
+    can [:index, :show], Book
+    can :show, Category
+    can :add_discount, Order
+    can [:index, :create, :update, :destroy, :clear_cart], OrderItem
+    can :read, Rating, check: true
+
     if user.admin
       can :manage, :all
     end
@@ -12,24 +18,13 @@ class Ability
       can [:index, :show], Book
       can :show, Category
       can :index, Delivery
-      can :manage, CreditCard, customer_id: user.id
-      can :manage, Order, customer_id: user.id
+      can :manage, CreditCard, id: user.current_order.credit_card.id
+      can [:index, :show, :edit, :update, :confirmation, :overview], Order, customer_id: user.id
       can [:edit, :update], Customer, id: user.id
-      can :manage, OrderItem
-      can :read, Rating, check: true
-      can :create, Rating
-
+      can [:new, :create], Rating
       can [:edit, :update], Address do |a|
         a.try(:user) == user
       end
-    end
-
-    unless user.id
-      can [:index, :show], Book
-      can :show, Category
-      can :manage, OrderItem
-      can :add_discount, Order
-      can :read, Rating, check: true
     end
 
     # Define abilities for the passed in user here. For example:

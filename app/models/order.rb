@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   include AASM
   belongs_to :customer
   belongs_to :delivery
-  belongs_to :discount, dependent: :destroy
+  belongs_to :discount,    dependent: :destroy
   belongs_to :credit_card, dependent: :destroy
   has_many   :order_items, dependent: :destroy
   

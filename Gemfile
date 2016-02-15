@@ -36,7 +36,7 @@ gem 'bxslider-rails'
 gem 'country_select'
 gem 'simple_form'
 gem 'mini_magick'
-gem 'carrierwave'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave', ref: 'c2ee2e8'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

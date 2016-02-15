@@ -32,12 +32,13 @@
         = f.submit t('.submit'), class: "save_settings btn btn-primary"
     .password_settings
       %h3{class: 'address_column_title'}= t('.passwrd')
-      = form_for current_user, url: registration_path(current_user), method: :put, html: {class: 'update_password'}  do |f|
-        = f.label :old_password
-        = f.password_field :current_password, autocomplete: "off", placeholder: 'Type old password', class: 'input_form'
-        = f.label :new_password
-        = f.password_field :password, autocomplete: "off", placeholder: 'Type new password', class: 'input_form'
-        = f.submit t('.submit'), class: "save_settings btn btn-primary"
+      - unless current_user.provider
+        = form_for current_user, url: registration_path(current_user), method: :put, html: {class: 'update_password'}  do |f|
+          = f.label :old_password
+          = f.password_field :current_password, autocomplete: "off", placeholder: 'Type old password', class: 'input_form'
+          = f.label :new_password
+          = f.password_field :password, autocomplete: "off", placeholder: 'Type new password', class: 'input_form'
+          = f.submit t('.submit'), class: "save_settings btn btn-primary"
     .remove_account
       %h3{class: 'address_column_title'}= t('.rmv_account_title')
       .form_for_remove_account

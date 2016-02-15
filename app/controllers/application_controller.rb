@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(user)
-    session[:previous_url] 
+    session[:previous_url] || root_path
   end
 
   def after_sign_out_path_for(user)
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 
   def check_order_id
     unless cookies[:order_id]
-      cookies[:order_id] = { value: Order.create.id, expires: 1.year.from_now }
+      cookies[:order_id] = Order.create.id
     end
   end
 

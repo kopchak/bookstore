@@ -29,12 +29,12 @@ class OrderItemsController < ApplicationController
 
   def destroy
     @order_item.destroy
-    redirect_to :back
+    redirect_to order_items_path
   end
 
   def clear_cart
     @order.order_items.destroy_all
-    redirect_to :back
+    redirect_to order_items_path
   end
 
   private

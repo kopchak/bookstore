@@ -1,22 +1,22 @@
 class Customer < ActiveRecord::Base
-  # ratyrate_rater
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :orders
+  has_many :orders, dependent: :nullify
   has_many :ratings, dependent: :destroy
   belongs_to :billing_address, class_name: "Address", dependent: :destroy
   belongs_to :shipping_address, class_name: "Address", dependent: :destroy
+
+  validates :email, :encrypted_password, presence: true
 
   after_create :create_address
 
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :shipping_address
 
-  validates :email, :encrypted_password, presence: true
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |customer|
@@ -25,12 +25,8 @@ class Customer < ActiveRecord::Base
     end
   end
 
-  def self.new_with_session(params, session)
-    super.tap do |customer|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        customer.email = data["email"] if customer.email.blank?
-      end
-    end
+  def current_order
+    orders.find_by(state: 'in_progress')
   end
   
   private
