@@ -33,7 +33,7 @@ RSpec.describe Book, :type => :model do
       expect(Book.bestsellers).to match_array(@bestsellers)
     end
 
-    it 'not to match ' do
+    it 'bestsellers not to match books' do
       expect(Book.bestsellers).not_to match_array(@books)
     end
   end
