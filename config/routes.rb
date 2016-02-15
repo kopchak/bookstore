@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :customers, controllers: { omniauth_callbacks: "customers/omniauth_callbacks" }
+  get '/customers', to: redirect('edit_customer_path')
 
   resources :categories,   only: :show
   resources :deliveries,   only: :index
