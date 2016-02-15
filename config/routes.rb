@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :customers, controllers: { omniauth_callbacks: "customers/omniauth_callbacks" }
-  get '/customers', to: redirect('edit_customer_path')
 
   resources :categories,   only: :show
   resources :deliveries,   only: :index
@@ -13,7 +12,10 @@ Rails.application.routes.draw do
     delete :clear_cart, on: :collection
   end
 
-  resources :customers, only: [:edit, :update]
+  resources :customers, only: [:edit, :update] do
+    patch :update_password, on: :collection
+    patch :update_email,    on: :collection
+  end
 
   resources :books, only: [:index, :show]  do
     resources :ratings, only: [:new, :create]

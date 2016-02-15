@@ -2,8 +2,8 @@ class OrdersController < ApplicationController
   load_and_authorize_resource
   before_action :check_order_id, :check_current_user, only: :index
   before_action :get_order_info, only: [:index, :show, :edit]
-  before_action :get_order_id, only: [:update, :confirmation, :add_discount, :check_payment]
-  before_action :check_payment, only: :edit
+  before_action :get_order_id,   only: [:update, :confirmation, :add_discount, :check_payment]
+  before_action :check_payment,  only: :edit
 
   def index
     @orders_in_progress = Order.accessible_by(current_ability).where(state: 'in_progress')
@@ -40,6 +40,8 @@ class OrdersController < ApplicationController
     @order.in_queue
     @order.completed_date = 3.days.from_now
     @order.save
+    check_order_id
+    check_current_user
     redirect_to action: 'overview'
   end
 
