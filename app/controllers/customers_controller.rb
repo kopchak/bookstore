@@ -7,7 +7,7 @@ class CustomersController < ApplicationController
     @shipping_address = current_user.shipping_address
   end
 
-  def update
+  def update_address
     if params[:billing_address]
       current_user.billing_address.update(billing_params)
     elsif params[:shipping_address]

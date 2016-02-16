@@ -5,25 +5,25 @@
     %h2= t('.settings')
     .billing_address_settings
       %h3{class: 'address_column_title'}= t('.bill_addr')
-      = simple_form_for :billing_address, url: customer_path, method: :patch do |f|
+      = simple_form_for :billing_address, url: update_address_customers_path, method: :patch do |f|
         = f.input :firstname, label: false, placeholder: 'First name', input_html: {class: 'input_form'}
         = f.input :lastname, label: false, placeholder: 'Last name', input_html: {class: 'input_form'}
         = f.input :street_address, label: false, placeholder: 'Street address', input_html: {class: 'input_form'}
         = f.input :city, label: false, placeholder: 'City', input_html: {class: 'input_form'}
         = f.country_select("country", { include_blank: 'Country' }, {class: 'input_form'})
-        = f.input :zipcode, label: false, placeholder: 'Zipcode', input_html: {class: 'input_form'}
-        = f.input :phone, label: false, placeholder: 'Phone number', input_html: {class: 'input_form'}
+        = f.input :zipcode, as: :integer, label: false, placeholder: 'Zipcode', input_html: {class: 'input_form'}
+        = f.input :phone, as: :integer, label: false, placeholder: 'Phone number', input_html: {class: 'input_form'}
         = f.submit t('.submit'), class: "save_settings btn btn-primary"
     .shipping_address_settings
       %h3{class: 'address_column_title'}= t('.shipp_addr')
-      = simple_form_for :shipping_address, url: customer_path, method: :patch do |f|
+      = simple_form_for :shipping_address, url: update_address_customers_path, method: :patch do |f|
         = f.input :firstname, label: false, placeholder: 'First name', input_html: {class: 'input_form'}
         = f.input :lastname, label: false, placeholder: 'Last name', input_html: {class: 'input_form'}
         = f.input :street_address, label: false, placeholder: 'Street address', input_html: {class: 'input_form'}
         = f.input :city, label: false, placeholder: 'City', input_html: {class: 'input_form'}
         = f.country_select("country", { include_blank: 'Country' }, {class: 'input_form'})
-        = f.input :zipcode, label: false, placeholder: 'Zipcode', input_html: {class: 'input_form'}
-        = f.input :phone, label: false, placeholder: 'Phone number', input_html: {class: 'input_form'}
+        = f.input :zipcode, as: :integer, label: false, placeholder: 'Zipcode', input_html: {class: 'input_form'}
+        = f.input :phone, as: :integer, label: false, placeholder: 'Phone number', input_html: {class: 'input_form'}
         = f.submit t('.submit'), class: "save_settings btn btn-primary"
     .email_settings
       %h3{class: 'address_column_title'}= t('.email')

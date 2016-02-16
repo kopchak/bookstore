@@ -12,7 +12,8 @@ Rails.application.routes.draw do
     delete :clear_cart, on: :collection
   end
 
-  resources :customers, only: [:edit, :update] do
+  resources :customers, only: :edit do
+    patch :update_address,  on: :collection
     patch :update_password, on: :collection
     patch :update_email,    on: :collection
   end

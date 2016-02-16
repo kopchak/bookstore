@@ -30,7 +30,9 @@ describe Ability do
       it { expect(ability).to be_able_to(:index, Delivery) }
       it { expect(ability).to be_able_to(:manage, CreditCard) }
       it { expect(ability).to be_able_to(:edit, Customer) }
-      it { expect(ability).to be_able_to(:update, Customer) }
+      it { expect(ability).to be_able_to(:update_address, Customer) }
+      it { expect(ability).to be_able_to(:update_email, Customer) }
+      it { expect(ability).to be_able_to(:update_password, Customer) }
       it { expect(ability).to be_able_to(:index, OrderItem) }
       it { expect(ability).to be_able_to(:create, OrderItem) }
       it { expect(ability).to be_able_to(:update, OrderItem) }

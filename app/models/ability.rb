@@ -20,7 +20,7 @@ class Ability
       can :index, Delivery
       can :manage, CreditCard, id: user.current_order.credit_card.id
       can [:index, :show, :edit, :update, :confirmation, :overview], Order, customer_id: user.id
-      can [:edit, :update], Customer, id: user.id
+      can [:edit, :update_address, :update_password, :update_email], Customer, id: user.id
       can [:new, :create], Rating
       can [:edit, :update], Address do |a|
         a.try(:user) == user
