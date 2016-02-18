@@ -6,7 +6,4 @@ class OrderItem < ActiveRecord::Base
 
   default_scope { order("id") }
 
-  def total_price
-    book.price * quantity.to_i
-  end
 end

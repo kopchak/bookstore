@@ -37,13 +37,10 @@ describe Ability do
       it { expect(ability).to be_able_to(:create, OrderItem) }
       it { expect(ability).to be_able_to(:update, OrderItem) }
       it { expect(ability).to be_able_to(:destroy, OrderItem) }
-      it { expect(ability).to be_able_to(:clear_cart, OrderItem) }
+      it { expect(ability).to be_able_to(:clear_cart, Order) }
       it { expect(ability).to be_able_to(:index, Order) }
       it { expect(ability).to be_able_to(:show, Order) }
-      it { expect(ability).to be_able_to(:edit, Order) }
-      it { expect(ability).to be_able_to(:update, Order) }
-      it { expect(ability).to be_able_to(:confirmation, Order) }
-      it { expect(ability).to be_able_to(:overview, Order) }
+      it { expect(ability).to be_able_to(:complete, Order) }
       it { expect(ability).to be_able_to(:add_discount, Order) }
       it { expect(ability).to be_able_to(:read, Rating) }
       it { expect(ability).to be_able_to(:new, Rating) }
@@ -77,7 +74,7 @@ describe Ability do
       it { expect(ability).to be_able_to(:create, OrderItem) }
       it { expect(ability).to be_able_to(:update, OrderItem) }
       it { expect(ability).to be_able_to(:destroy, OrderItem) }
-      it { expect(ability).to be_able_to(:clear_cart, OrderItem) }
+      it { expect(ability).to be_able_to(:clear_cart, Order) }
       it { expect(ability).to be_able_to(:add_discount, Order) }
       it { expect(ability).to be_able_to(:read, Rating) }
     end

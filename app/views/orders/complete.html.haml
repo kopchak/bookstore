@@ -1,43 +1,30 @@
 .container
-  = render "credit_cards/header"
+  = render "order_items/header"
 
   .address
     .name_columns_checkout
-      %h2{class: 'checkout_title'}= t('.checkout')
-      = link_to t('.address'), edit_address_path, class: 'link_address_title'
-      = link_to t('.delivery'), deliveries_path, class: 'link_address_title'
-      = link_to t('.payment'), edit_credit_card_path, class: 'link_address_title'
-      %h4{class: 'confirm_title'}= t('.confirm')
-      %h4{class: 'complete_title'}= t('.complete')
+      %h2{class: 'checkout_title'} #{t('.order_number')} #{@order.id}
     .confirm_block
       %h3= t('.confirm')
       .billing_info_block
-        %h4
-          #{t('.bill_addr')}
-          = link_to t('.edit'), edit_address_path
+        %h4= t('.bill_addr')
         %p #{@billing_address.firstname} #{@billing_address.lastname}
         %p #{@billing_address.street_address}
         %p #{@billing_address.city} #{@billing_address.zipcode}
         %p #{@billing_address.country}
         %p #{t('.phone')} #{@billing_address.phone}
       .shipping_info_block
-        %h4
-          #{t('.shipp_addr')}
-          = link_to t('.edit'), edit_address_path
+        %h4= t('.shipp_addr')
         %p #{@shipping_address.firstname} #{@shipping_address.lastname}
         %p #{@shipping_address.street_address}
         %p #{@shipping_address.city} #{@shipping_address.zipcode}
         %p #{@shipping_address.country}
         %p #{t('.phone')} #{@shipping_address.phone}
       .delivery_info_block
-        %h4
-          #{t('.shipments')}
-          = link_to t('.edit'), deliveries_path
-        %p #{@order.delivery.title}
+        %h4= t('.shipments')
+        %p= @order.delivery.title
       .credit_card_info_block
-        %h4
-          #{t('.payment_info')}
-          = link_to t('.edit'), edit_credit_card_path(@order.credit_card.id)
+        %h4= t('.payment_info')
         %p #{t('.stars')} #{@order.credit_card.number.last(4)}
         %p #{@order.credit_card.expiration_month}#{t('.slash')}#{@order.credit_card.expiration_year}
     .order_items_confirm
@@ -55,13 +42,13 @@
           .block_info_item
             %h4{class: "book_price"}= number_to_currency(order_item.book.price)
             %h4{class: "order_item_qty_info_confirm"}= order_item.quantity
-            %h4{class: "total_book_price"}= number_to_currency(order_item.total_price)
+            %h4{class: "total_book_price"}= number_to_currency(order_item.price)
     .order_price_info_confirm
-      %h5 #{t('.subtotal')} #{number_to_currency(@order_items_price)}
+      %h5 #{t('.subtotal')} #{number_to_currency(@order.order_items.sum(:price))}
       %h5 #{t('.shipping')} #{number_to_currency(@order.delivery.price)}
       - if @order.discount
         %h5 #{t('.discount')} #{number_to_currency(@order.discount.amount)}
     .order_total_price_info_confirm
       %h5 #{t('.order_total')} #{number_to_currency(@order.total_price)}
-  
-    = button_to t('.place_order'), confirmation_order_path(@order), method: :get, class: 'place_order btn btn-primary'
+    .go_back_store
+      = button_to t('.go_store'), books_path, method: :get, class: 'btn btn-primary'

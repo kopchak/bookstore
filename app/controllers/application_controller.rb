@@ -47,8 +47,8 @@ class ApplicationController < ActionController::Base
 
   def get_order_info
     get_order_id
-    @order_items_count = @order.order_items.count
-    @order_items_price = @order.order_items.sum(:price)
+    @order_items_count = @order.items_quantity
+    @order_items_price = @order.items_price
   end
 
   helper_method :current_user

@@ -4,13 +4,7 @@ Rails.application.routes.draw do
   devise_for :customers, controllers: { omniauth_callbacks: "customers/omniauth_callbacks" }
 
   resources :categories,   only: :show
-  resources :deliveries,   only: :index
-  resource  :address,      only: [:edit, :update]
-  resources :credit_cards, only: [:edit, :update]
-  
-  resources :order_items, except: [:new, :show, :edit] do
-    delete :clear_cart, on: :collection
-  end
+  resources :order_items, except: [:new, :show, :edit]
 
   resources :customers, only: :edit do
     patch :update_address,  on: :collection
@@ -22,10 +16,24 @@ Rails.application.routes.draw do
     resources :ratings, only: [:new, :create]
   end
 
-  resources :orders, except: [:new, :create, :destroy] do
-    get   :confirmation, on: :member
-    get   :overview,     on: :member
-    patch :add_discount, on: :member
+  resources :orders, only: [:index, :show] do
+    get    :complete,     on: :member
+    patch  :add_discount, on: :member
+    delete :clear_cart,   on: :collection
+  end
+
+  namespace :checkouts do
+    get   :edit_address
+    patch :update_address
+
+    get   :choose_delivery
+    patch :set_delivery
+
+    get   :confirm_payment
+    patch :update_credit_card
+
+    get   :overview
+    get   :confirmation
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

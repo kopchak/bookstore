@@ -20,22 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  addresses:
-    edit:
-      checkout: Checkout
-      address: ADDRESS
-      delivery: DELIVERY
-      payment: PAYMENT
-      confirm: CONFIRM
-      complete: COMPLETE
-      billing_address: BILLING ADDRESS
-      shipping_address: SHIPPING ADDRESS
-      order_summary: ORDER SUMMARY
-      submit: SAVE AND CONTINUE
-      use_bill_addr: Use Billing Address
-      item_total: "ITEM TOTAL:"
-      discount: "DISCOUNT:"
-      order_total: "ORDER TOTAL:"
   books:
     index:
       categories: Shop by categories
@@ -50,14 +34,45 @@ en:
       home: Home
       shop: Shop
       book_categories: Shop by categories
-  credit_cards:
-    header:
+  checkouts:
+    payment_header:
       home: Home
       shop: Shop
-      cart: Cart
+      cart: Cart1
       settings: Settings
       sign_out: Sign out
-    edit:
+    edit_address:
+      checkout: Checkout
+      address: ADDRESS
+      delivery: DELIVERY
+      payment: PAYMENT
+      confirm: CONFIRM
+      complete: COMPLETE
+      billing_address: BILLING ADDRESS
+      shipping_address: SHIPPING ADDRESS
+      order_summary: ORDER SUMMARY
+      submit: SAVE AND CONTINUE
+      use_bill_addr: Use Billing Address
+      item_total: "ITEM TOTAL:"
+      discount: "DISCOUNT:"
+      order_total: "ORDER TOTAL:"
+    choose_delivery:
+      checkout: Checkout
+      address: ADDRESS
+      delivery: DELIVERY
+      payment: PAYMENT
+      confirm: CONFIRM
+      complete: COMPLETE
+      bill_addr: BILLING ADDRESS
+      shipp_addr: SHIPPING ADDRESS
+      order_summary: ORDER SUMMARY
+      plus: "+"
+      item_total_price: "ITEM TOTAL:"
+      shipping_price: "SHIPPING:"
+      discount: "DISCOUNT:"
+      order_total_price: "ORDER TOTAL:"
+      submit: SAVE AND CONTINUE
+    confirm_payment:
       checkout: Checkout
       address: ADDRESS
       delivery: DELIVERY
@@ -75,23 +90,35 @@ en:
       shipping: "SHIPPING:"
       discount: "DISCOUNT:"
       order_total: "ORDER TOTAL:"
-  deliveries:
-    index:
+    overview:
+      home: Home
+      shop: Shop
+      cart: Cart1
+      settings: Settings
+      sign_out: Sign out
       checkout: Checkout
       address: ADDRESS
       delivery: DELIVERY
       payment: PAYMENT
       confirm: CONFIRM
       complete: COMPLETE
-      bill_addr: BILLING ADDRESS
-      shipp_addr: SHIPPING ADDRESS
-      order_summary: ORDER SUMMARY
-      plus: "+"
-      item_total_price: "ITEM TOTAL:"
-      shipping_price: "SHIPPING:"
+      bill_addr: Billing address
+      shipp_addr: Shipping address
+      edit: (edit)
+      phone: Phone
+      shipments: Shipments
+      payment_info: Payment information
+      stars: "**** **** ****"
+      slash: "/"
+      book: BOOK
+      price: PRICE
+      qty: QTY
+      total: TOTAL
+      subtotal: "SUBTOTAL:"
+      shipping: "SHIPPING:"
       discount: "DISCOUNT:"
-      order_total_price: "ORDER TOTAL:"
-      submit: SAVE AND CONTINUE
+      order_total: "ORDER TOTAL:"
+      place_order: PLACE ORDER
   home:
     header:
       home_link: Home
@@ -131,30 +158,6 @@ en:
       submit_dicount: UPDATE
       checkout: CHECKOUT
   orders:
-    edit:
-      checkout: Checkout
-      address: ADDRESS
-      delivery: DELIVERY
-      payment: PAYMENT
-      confirm: CONFIRM
-      complete: COMPLETE
-      bill_addr: Billing address
-      shipp_addr: Shipping address
-      edit: (edit)
-      phone: Phone
-      shipments: Shipments
-      payment_info: Payment information
-      stars: "**** **** ****"
-      slash: "/"
-      book: BOOK
-      price: PRICE
-      qty: QTY
-      total: TOTAL
-      subtotal: "SUBTOTAL:"
-      shipping: "SHIPPING:"
-      discount: "DISCOUNT:"
-      order_total: "ORDER TOTAL:"
-      place_order: PLACE ORDER
     index:
       orders: Orders
       in_progress: In progress
@@ -172,7 +175,18 @@ en:
       order_number: "Order #"
       view_link: view
       delivered: Delivered
-    overview:
+    show:
+      back_to_orders: "< Back to orders"
+      order_number: "Order #"
+      book: BOOK
+      price: PRICE
+      qty: QTY
+      total: TOTAL
+      subtotal: "SUBTOTAL:"
+      shipping: "SHIPPING:"
+      discount: "DISCOUNT:"
+      order_total: "ORDER TOTAL:"
+    complete:
       order_number: "Order #"
       confirm: CONFIRM
       bill_addr: Billing address
@@ -191,17 +205,6 @@ en:
       discount: "DISCOUNT:"
       order_total: "ORDER TOTAL:"
       go_store: GO BACK TO STORE
-    show:
-      back_to_orders: "< Back to orders"
-      order_number: "Order #"
-      book: BOOK
-      price: PRICE
-      qty: QTY
-      total: TOTAL
-      subtotal: "SUBTOTAL:"
-      shipping: "SHIPPING:"
-      discount: "DISCOUNT:"
-      order_total: "ORDER TOTAL:"
   ratings:
     new:
       new_review: 'New review for'

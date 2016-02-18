@@ -42,11 +42,4 @@ RSpec.describe OrderItemsController, :type => :controller do
     end
   end
 
-  describe 'GET #clear_cart' do
-    it 'redirect to order_items_path' do
-      delete :clear_cart
-      expect(response).to redirect_to(order_items_path)
-    end
-  end
-
 end

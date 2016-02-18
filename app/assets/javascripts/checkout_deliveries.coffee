@@ -2,7 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
-  $('#order_delivery_id_1').attr("checked", true)
   discount = parseFloat($('.discount_deliveries').text().replace(/[^0-9.]/g, '')) || 0
   delivery_price = parseFloat($('.delivery_price_info').text().replace(/[^0-9.]/g, ''))
   order_items_price = parseFloat($('.sum_order_items').text().replace(/[^0-9.]/g, ''))

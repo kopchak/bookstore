@@ -21,7 +21,7 @@
           .block_info_item
             %h4{class: "book_price"}= number_to_currency(order_item.book.price)
             %h4{class: "order_item_qty_info_confirm"}= order_item.quantity
-            %h4{class: "total_book_price"}= number_to_currency(order_item.total_price)
+            %h4{class: "total_book_price"}= number_to_currency(order_item.price)
     .order_price_info_confirm
       %h5 #{t('.subtotal')} #{number_to_currency(@order.order_items.sum(:price))}
       %h5 #{t('.shipping')} #{number_to_currency(@order.delivery.price)}

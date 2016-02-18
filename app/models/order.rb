@@ -35,7 +35,43 @@ class Order < ActiveRecord::Base
   end
 
   def state_enum
-    ['in_progress', 'in_queue', 'delivered', 'canceled']
+    ['in_queue', 'in_delivery', 'delivered', 'canceled']
+  end
+
+  def items_price
+    order_items.sum(:price)
+  end
+
+  def items_quantity
+    order_items.sum(:quantity)
+  end
+
+  def add_book(book, qty)
+    qty = qty.to_i
+    if order_item = order_items.find_by(book_id: book.id)
+      order_item.quantity += qty
+      order_item.price += book.price * qty
+    else
+      order_item = order_items.new(book_id: book.id, quantity: qty)
+      order_item.price = book.price * qty
+    end
+    order_item
+  end
+
+  def add_discount(coupon)
+    if coupon.new_state && self.discount.nil?
+      coupon.update(new_state: false)
+      self.discount = coupon
+      self.save
+    end
+  end
+
+  def set_total_price
+    if self.discount
+      self.total_price = self.items_price + self.delivery.price - self.discount.amount
+    else
+      self.total_price = self.items_price + self.delivery.price
+    end
   end
 
   private

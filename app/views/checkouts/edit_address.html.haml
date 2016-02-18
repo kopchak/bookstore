@@ -13,7 +13,7 @@
       %h4{class: 'billing_address'}= t('.billing_address')
       %h4{class: 'shipping_address'}= t('.shipping_address')
       %h4{class: 'order_summary'}= t('.order_summary')
-    = simple_form_for current_user, url: address_path, method: :patch, html: { class: 'update_address_form' } do |m|
+    = simple_form_for current_user, url: checkouts_update_address_path, method: :patch, html: { class: 'update_address_form' } do |m|
       .billing_address_form
         = m.simple_fields_for :billing_address do |f|
           = f.input :firstname, label: false, placeholder: 'First name', input_html: {class: 'input_form'}
@@ -40,12 +40,7 @@
     .order_summary_info
       %h5 #{t('.item_total')} #{number_to_currency(@order_items_price)}
       - if @order.discount
-        %h5 #{t('.discount')} #{number_to_currency(@order.discount.amount)}
+        %h5{class: 'discount'} #{t('.discount')} #{number_to_currency(@order.discount.amount)}
         %h5 #{t('.order_total')} #{number_to_currency(@order.total_price)}
       - else
         %h5 #{t('.order_total')} #{number_to_currency(@order_items_price)}
-
-
-
-
-
