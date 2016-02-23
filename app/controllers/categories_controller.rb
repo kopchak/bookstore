@@ -4,6 +4,6 @@ class CategoriesController < ApplicationController
   
   def show
     @books = Book.where(category_id: params[:id]).page(params[:page]).per(6)
-    @categories = Category.joins(:books).distinct.order(:id)
+    @categories = Category.has_book
   end
 end

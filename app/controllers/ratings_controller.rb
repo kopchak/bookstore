@@ -1,6 +1,6 @@
 class RatingsController < ApplicationController
-  before_action :get_order_info, only: :new
   load_and_authorize_resource
+  before_action :get_order_info, only: :new
 
   def new
     @book = Book.find(params[:book_id])

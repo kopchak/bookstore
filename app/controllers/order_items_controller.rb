@@ -1,5 +1,5 @@
 class OrderItemsController < ApplicationController
-  before_action :check_order_id, :get_order_id, only: [:index, :create]
+  before_action :check_order_id, :current_order, only: [:index, :create]
 
   def index
     @order_items = @order.order_items
@@ -8,9 +8,7 @@ class OrderItemsController < ApplicationController
   end
 
   def create
-    book = Book.find(params[:order_item][:book_id])
-    order_item = @order.add_book(book, params[:order_item][:quantity])
-    order_item.save
+    @order.add_book(params[:order_item][:book_id], params[:order_item][:quantity].to_i)
     redirect_to :back
   end
 

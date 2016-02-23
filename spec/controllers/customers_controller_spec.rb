@@ -42,7 +42,6 @@ RSpec.describe CustomersController, :type => :controller do
     context 'when customer has been sign_in' do
       before do
         sign_in @customer
-        request.env["HTTP_REFERER"] = edit_customer_path(@customer.id)
         allow(controller).to receive(:current_user).and_return(@customer)
       end
 
@@ -65,7 +64,7 @@ RSpec.describe CustomersController, :type => :controller do
     end
 
     context 'when customer not sign_in' do
-      it 'redirect to root' do
+      it 'redirect to sign_in page' do
         patch :update_address, id: @customer.id, billing_address: attributes_for(:address)
         expect(response).to redirect_to(new_customer_session_path)
       end
@@ -80,6 +79,79 @@ RSpec.describe CustomersController, :type => :controller do
 
       it 'redirect to root' do
         patch :update_address, id: @customer.id, billing_address: attributes_for(:address)
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
+
+  describe 'PATCH #update_password' do
+    context 'when customer has been sign_in' do
+      before do
+        sign_in @customer
+        allow(controller).to receive(:current_user).and_return(@customer)
+      end
+
+      it 'with valid params' do
+        patch :update_password, id: @customer.id, customer: { current_password: @customer.password, password: '12345678' }
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'with invalid params' do
+        patch :update_password, id: @customer.id, customer: { current_password: 'blabla', password: '12345678' }
+        expect(response).to redirect_to(edit_customer_path(@customer.id))
+      end
+    end
+
+    context 'when customer not sign_in' do
+      it 'redirect to sign_in page' do
+        patch :update_password, id: @customer.id, customer: { current_password: @customer.password, password: '12345678' }
+        expect(response).to redirect_to(new_customer_session_path)
+      end
+    end
+
+    context 'when no have rights, cancan redirect to root path' do
+      before do
+        redefine_cancan_abilities
+        sign_in @customer
+        @ability.cannot :update_password, Customer
+      end
+
+      it 'redirect to root' do
+        patch :update_password, id: @customer.id, customer: { current_password: @customer.password, password: '12345678' }
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
+
+  describe 'PATCH #update_email' do
+    context 'when customer has been sign_in' do
+      before do
+        sign_in @customer
+        allow(controller).to receive(:current_user).and_return(@customer)
+      end
+
+      it 'blabla' do
+        patch :update_email, id: @customer.id, customer: { email: 'abrakadabra@gmail.com' }
+        expect(@customer.email).to eq('abrakadabra@gmail.com')
+      end
+    end
+
+    context 'when customer not sign_in' do
+      it 'redirect to sign_in page' do
+        patch :update_email, id: @customer.id, customer: { email: 'abrakadabra@gmail.com' }
+        expect(response).to redirect_to(new_customer_session_path)
+      end
+    end
+
+    context 'when no have rights, cancan redirect to root path' do
+      before do
+        redefine_cancan_abilities
+        sign_in @customer
+        @ability.cannot :update_email, Customer
+      end
+
+      it 'redirect to root' do
+        patch :update_email, id: @customer.id, customer: { email: 'abrakadabra@gmail.com' }
         expect(response).to redirect_to(root_path)
       end
     end

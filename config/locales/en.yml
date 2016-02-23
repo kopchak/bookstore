@@ -26,6 +26,7 @@ en:
       shop_title: Shop
     show:
       submit: Add to cart
+      reviews_title: Reviews
       rating_qty: from 5
       by: by
       add_review: Add review for this book
@@ -33,6 +34,7 @@ en:
     show:
       home: Home
       shop: Shop
+      categories: "Categories -"
       book_categories: Shop by categories
   checkouts:
     payment_header:
@@ -121,6 +123,7 @@ en:
       place_order: PLACE ORDER
   home:
     header:
+      title_shop: The Bookstore
       home_link: Home
       shop_link: Shop
       settings_link: Settings

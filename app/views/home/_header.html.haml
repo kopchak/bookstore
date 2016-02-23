@@ -1,5 +1,5 @@
 .header
-  %h1{class: "project_name"} The Bookstore
+  %h1{class: "project_name"}= t('.title_shop')
   .home
     = link_to t('.home_link'), root_path, class: 'link_to_home btn btn-primary'
     = link_to t('.shop_link'), books_path, class: 'btn btn-primary'

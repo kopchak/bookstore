@@ -14,7 +14,7 @@ RSpec.describe OrderItemsController, :type => :controller do
     end
   end
 
-  describe 'POST #create' do
+  context 'POST #create' do
     it 'redirect to root, if the request came from there' do
       request.env["HTTP_REFERER"] = root_path
       post :create, order_item: attributes_for(:order_item, book_id: @book.id)
@@ -28,14 +28,14 @@ RSpec.describe OrderItemsController, :type => :controller do
     end
   end
 
-  describe 'PATCH #update' do
+  context 'PATCH #update' do
     it 'render nothing' do
       patch :update, id: @order_item.id, order_item: attributes_for(:order_item)
       expect(response.body).to be_blank
     end
   end
 
-  describe 'GET #destroy' do
+  context 'GET #destroy' do
     it 'redirect to order_items_path' do
       delete :destroy, id: @order_item.id
       expect(response).to redirect_to(order_items_path)

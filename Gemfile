@@ -31,7 +31,6 @@ gem 'aasm'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'ratyrate'
 gem 'bxslider-rails'
 gem 'country_select'
 gem 'simple_form'
@@ -52,6 +51,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'poltergeist'
 end
 
 group :test do

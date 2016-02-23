@@ -13,7 +13,7 @@
       %h4{class: 'credit_card_column'}= t('.credit_card')
       %h4{class: 'shipping_address'}= t('.shipp_addr')
       %h4{class: 'order_summary_credit_card'}= t('.order_summary')
-    = simple_form_for @credit_card, url: checkouts_update_credit_card_path, method: :patch do |f|
+    = simple_form_for @credit_card, url: checkouts_update_credit_card_path, method: :patch, html: { autocomplete: 'off' } do |f|
       = f.input :number, label: false, placeholder: 'Card Number', input_html: {class: 'input_form', minlength: 16, maxlength: 16}
       = f.label "#{t('.exp_date')}:"
       .expiration_date

@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   load_and_authorize_resource
-  before_action :get_order_info, only: :edit
+  before_action :check_order_id, :get_order_info, only: :edit
 
   def edit
     @billing_address = current_user.billing_address
@@ -13,7 +13,7 @@ class CustomersController < ApplicationController
     elsif params[:shipping_address]
       current_user.shipping_address.update(shipping_params)
     end
-    redirect_to :back
+    redirect_to edit_customer_path(current_user.id)
   end
 
   def update_password
@@ -22,12 +22,11 @@ class CustomersController < ApplicationController
       sign_in @customer, :bypass => true
       redirect_to root_path
     else
-      redirect_to edit_customer_path(current_user.id)
+      redirect_to edit_customer_path(@customer.id)
     end
   end
 
   def update_email
-    @customer = Customer.find(current_user.id)
     current_user.update(customer_params)
     redirect_to edit_customer_path(current_user.id)
   end

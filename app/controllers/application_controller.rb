@@ -5,15 +5,17 @@ class ApplicationController < ActionController::Base
   after_filter :store_location
 
   def store_location
-    session[:previous_url] = request.fullpath unless request.fullpath =~ /\/customers/
+    return unless request.get? 
+    if (request.path != "/customers/sign_in" &&
+        request.path != "/customers/sign_up" &&
+        request.path != "/customers/sign_out" &&
+        !request.xhr?)
+      session[:previous_url] = request.fullpath
+    end
   end
 
-  def after_sign_in_path_for(user)
+  def after_sign_in_path_for(resource)
     session[:previous_url] || root_path
-  end
-
-  def after_sign_out_path_for(user)
-    request.referrer
   end
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -28,8 +30,8 @@ class ApplicationController < ActionController::Base
     current_customer
   end
 
-  def get_order_id
-    @order = Order.find(cookies[:order_id])
+  def current_order
+    @order ||= Order.find(cookies[:order_id])
   end
 
   def check_order_id
@@ -40,13 +42,13 @@ class ApplicationController < ActionController::Base
 
   def check_current_user
     if current_user
-      get_order_id
+      current_order
       current_user.orders << @order
     end
   end
 
   def get_order_info
-    get_order_id
+    current_order
     @order_items_count = @order.items_quantity
     @order_items_price = @order.items_price
   end

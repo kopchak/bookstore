@@ -1,7 +1,7 @@
 class CheckoutsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :get_order_info, only: [:edit_address, :choose_delivery, :set_delivery, :confirm_payment, :update_credit_card, :overview]
-  before_action :get_order_id,   only: :confirmation
+  before_action :get_order_info, only: [:edit_address, :choose_delivery, :confirm_payment, :overview]
+  before_action :current_order,  only: [:update_address, :set_delivery, :update_credit_card, :confirmation]
 
   def edit_address
   end
@@ -24,10 +24,8 @@ class CheckoutsController < ApplicationController
   end
 
   def set_delivery
-    delivery = Delivery.find(order_params[:delivery_id])
-    @order.delivery = delivery
+    @order.delivery_id = order_params[:delivery_id]
     @order.set_total_price
-    @order.save
     redirect_to checkouts_confirm_payment_path
   end
 
@@ -47,13 +45,8 @@ class CheckoutsController < ApplicationController
   end
 
   def confirmation
-    current_user.orders << @order
+    @order.confirm(current_user)
     cookies.delete(:order_id)
-    @order.in_queue
-    @order.completed_date = 3.days.from_now
-    @order.save
-    # check_order_id
-    # check_current_user
     redirect_to complete_order_path(@order.id)
   end
 

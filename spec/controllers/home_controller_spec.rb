@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe HomeController, :type => :controller do
-  describe "GET #index" do
+  context "GET #index" do
     before do
       get :index
     end

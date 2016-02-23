@@ -12,7 +12,7 @@
     %p{class: "description_book"}= @book.description
   .reviews
     .title
-      %h2 Reviews
+      %h2= t('.reviews_title')
       - if current_user
         = link_to t('.add_review'), new_book_rating_path(@book)
     - @ratings.each do |rating|

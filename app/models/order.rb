@@ -39,23 +39,22 @@ class Order < ActiveRecord::Base
   end
 
   def items_price
-    order_items.sum(:price)
+    self.order_items.sum(:price)
   end
 
   def items_quantity
-    order_items.sum(:quantity)
+    self.order_items.sum(:quantity)
   end
 
-  def add_book(book, qty)
-    qty = qty.to_i
-    if order_item = order_items.find_by(book_id: book.id)
+  def add_book(book_id, qty)
+    if order_item = self.order_items.find_by(book_id: book_id)
       order_item.quantity += qty
-      order_item.price += book.price * qty
+      order_item.price += order_item.book.price * qty
     else
-      order_item = order_items.new(book_id: book.id, quantity: qty)
-      order_item.price = book.price * qty
+      order_item = self.order_items.new(book_id: book_id, quantity: qty)
+      order_item.price = order_item.book.price * qty
     end
-    order_item
+    order_item.save
   end
 
   def add_discount(coupon)
@@ -72,6 +71,14 @@ class Order < ActiveRecord::Base
     else
       self.total_price = self.items_price + self.delivery.price
     end
+    self.save
+  end
+
+  def confirm(current_user)
+    self.customer_id = current_user.id
+    self.in_queue
+    self.completed_date = 3.days.from_now
+    self.save
   end
 
   private

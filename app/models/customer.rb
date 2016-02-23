@@ -24,10 +24,6 @@ class Customer < ActiveRecord::Base
       customer.password = Devise.friendly_token[0,20]
     end
   end
-
-  def current_order
-    orders.find_by(state: 'in_progress')
-  end
   
   private
   def create_address

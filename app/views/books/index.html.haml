@@ -2,7 +2,7 @@
   = render "home/header"
 
   .books
-    .shop
+    .shop.col-sm-9
       %h1= t('.shop_title')
       - @books.each do |book|
         .book{id: book.id}
@@ -11,7 +11,7 @@
           %strong= number_to_currency(book.price)
       .pagination
         = paginate @books
-    .categories
+    .categories.col-sm-3
       %h3{class: 'column_title_categories'}= t('.categories')
       %ul
         - @categories.each do |category|
