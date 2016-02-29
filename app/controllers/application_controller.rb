@@ -42,15 +42,18 @@ class ApplicationController < ActionController::Base
 
   def check_current_user
     if current_user
-      current_order
-      current_user.orders << @order
+      current_user.orders << current_order
     end
   end
 
   def get_order_info
-    current_order
-    @order_items_count = @order.items_quantity
-    @order_items_price = @order.items_price
+    @order_items_count = current_order.items_quantity
+    @order_items_price = current_order.items_price
+  end
+
+  private
+  def current_ability
+    @current_ability ||= Ability.new(current_user, current_order)
   end
 
   helper_method :current_user

@@ -2,13 +2,13 @@ require 'rails_helper'
 require 'cancan/matchers'
 
 describe Ability do
+  before do
+    @order = create(:order, customer_id: customer.id)
+  end
+
   describe "abilities of admin" do
     let(:customer) { create(:customer, admin: true) }
-    let(:ability)  { Ability.new(customer) }
-
-    before do
-      create(:order, customer_id: customer.id)
-    end
+    let(:ability)  { Ability.new(customer, @order) }
 
     context 'can' do
       it { expect(ability).to be_able_to(:manage, :all) }
@@ -17,11 +17,7 @@ describe Ability do
 
   describe "abilities of customer" do
     let(:customer) { create(:customer) }
-    let(:ability)  { Ability.new(customer) }
-
-    before do
-      create(:order, customer_id: customer.id)
-    end
+    let(:ability)  { Ability.new(customer, @order) }
 
     context 'can' do
       it { expect(ability).to be_able_to(:read, Book) }
@@ -30,7 +26,7 @@ describe Ability do
       it { expect(ability).to be_able_to(:update_address, Customer) }
       it { expect(ability).to be_able_to(:update_email, Customer) }
       it { expect(ability).to be_able_to(:update_password, Customer) }
-      it { expect(ability).to be_able_to(:crud, OrderItem) }
+      it { expect(ability).to be_able_to(:manage, OrderItem) }
       it { expect(ability).to be_able_to(:index, Order) }
       it { expect(ability).to be_able_to(:show, Order) }
       it { expect(ability).to be_able_to(:complete, Order) }
@@ -52,16 +48,12 @@ describe Ability do
 
   describe "abilities of guest" do
     let(:customer) { Customer.new }
-    let(:ability)  { Ability.new(customer) }
-
-    before do
-      create(:order, customer_id: customer.id)
-    end
+    let(:ability)  { Ability.new(customer, @order) }
 
     context 'can' do
       it { expect(ability).to be_able_to(:read, Book) }
       it { expect(ability).to be_able_to(:show, Category) }
-      it { expect(ability).to be_able_to(:crud, OrderItem) }
+      it { expect(ability).to be_able_to(:manage, OrderItem) }
       it { expect(ability).to be_able_to(:clear_cart, Order) }
       it { expect(ability).to be_able_to(:add_discount, Order) }
       it { expect(ability).to be_able_to(:read, Rating) }

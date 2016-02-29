@@ -5,7 +5,7 @@
     = link_to t('.shop_link'), books_path, class: 'btn btn-primary'
   .user_tools
     - if current_user
-      = link_to t('.settings_link'), edit_customer_path(current_user.id), class: 'link_to_settings btn btn-primary'
+      = link_to t('.settings_link'), edit_customer_path, class: 'link_to_settings btn btn-primary'
       = link_to t('.orders_link'), orders_path, class: 'link_to_orders btn btn-primary'
       = link_to t('.sign_out_link'), destroy_customer_session_path, method: :delete, class: 'btn btn-primary'
     - else

@@ -5,7 +5,7 @@
     %h2= t('.settings')
     .billing_address_settings
       %h3{class: 'address_column_title'}= t('.bill_addr')
-      = simple_form_for :billing_address, url: update_address_customers_path, method: :patch do |f|
+      = simple_form_for :billing_address, url: update_address_customer_path, method: :patch do |f|
         = f.input :firstname, label: false, placeholder: 'First name', input_html: {class: 'input_form'}
         = f.input :lastname, label: false, placeholder: 'Last name', input_html: {class: 'input_form'}
         = f.input :street_address, label: false, placeholder: 'Street address', input_html: {class: 'input_form'}
@@ -16,7 +16,7 @@
         = f.submit t('.submit'), class: "save_settings btn btn-primary"
     .shipping_address_settings
       %h3{class: 'address_column_title'}= t('.shipp_addr')
-      = simple_form_for :shipping_address, url: update_address_customers_path, method: :patch do |f|
+      = simple_form_for :shipping_address, url: update_address_customer_path, method: :patch do |f|
         = f.input :firstname, label: false, placeholder: 'First name', input_html: {class: 'input_form'}
         = f.input :lastname, label: false, placeholder: 'Last name', input_html: {class: 'input_form'}
         = f.input :street_address, label: false, placeholder: 'Street address', input_html: {class: 'input_form'}
@@ -27,14 +27,13 @@
         = f.submit t('.submit'), class: "save_settings btn btn-primary"
     .email_settings
       %h3{class: 'address_column_title'}= t('.email')
-      = form_for current_user, url: update_email_customers_path, method: :patch   do |f|
+      = form_for current_user, url: update_email_customer_path, method: :patch   do |f|
         = f.email_field :email, class: 'input_form'
         = f.submit t('.submit'), class: "save_settings btn btn-primary"
     .password_settings
       %h3{class: 'address_column_title'}= t('.passwrd')
-      %p= flash[:error]
       - unless current_user.provider
-        = form_for current_user, url: update_password_customers_path, method: :patch, html: {class: 'update_password'}  do |f|
+        = form_for current_user, url: update_password_customer_path, method: :patch, html: {class: 'update_password'}  do |f|
           = f.label :old_password
           = f.password_field :current_password, autocomplete: "off", placeholder: 'Type old password', class: 'input_form'
           = f.label :new_password

@@ -1,8 +1,7 @@
 class OrdersController < ApplicationController
-  load_and_authorize_resource    only: [:index, :show, :complete]
   before_action :check_order_id, :check_current_user, only: :index
+  load_and_authorize_resource
   before_action :get_order_info, only: [:index, :show]
-  before_action :current_order,  only: [:add_discount, :clear_cart]
 
   def index
     orders = Order.accessible_by(current_ability)
@@ -13,7 +12,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.accessible_by(current_ability).find(params[:id])
   end
 
   def complete

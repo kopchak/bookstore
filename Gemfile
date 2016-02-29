@@ -52,6 +52,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'poltergeist'
+  gem 'show_me_the_cookies'
 end
 
 group :test do

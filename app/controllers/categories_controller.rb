@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :get_order_info, only: :show
+  before_action :check_order_id, :get_order_info
   load_and_authorize_resource
   
   def show

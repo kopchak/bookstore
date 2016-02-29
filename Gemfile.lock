@@ -261,6 +261,8 @@ GEM
     sexp_processor (4.6.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    show_me_the_cookies (3.1.0)
+      capybara (~> 2.0)
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -330,6 +332,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   shoulda-matchers (~> 3.1)
+  show_me_the_cookies
   simple_form
   spring
   turbolinks

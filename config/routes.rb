@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :categories,  only: :show
   resources :order_items, except: [:new, :show, :edit]
 
-  resources :customers, only: :edit do
+  resource :customer, only: :edit do
     collection do
       patch :update_address
       patch :update_password

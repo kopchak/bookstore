@@ -1,9 +1,8 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user, current_order = nil)
     user ||= Customer.new
-
     if user.admin
       can :manage, :all
     else
@@ -14,8 +13,8 @@ class Ability
       end
       can :read, Book
       can :show, Category
-      can [:add_discount, :clear_cart], Order
-      can :crud, OrderItem
+      can [:add_discount, :clear_cart], Order, id: current_order.id
+      can :manage, OrderItem, order_id: current_order.id
       can :read, Rating, check: true
     end
   end

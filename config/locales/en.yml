@@ -38,6 +38,7 @@ en:
       book_categories: Shop by categories
   checkouts:
     payment_header:
+      title_shop: The Bookstore
       home: Home
       shop: Shop
       cart: Cart1
@@ -140,6 +141,7 @@ en:
       by: by
   order_items:
     header:
+      title_shop: The Bookstore
       home_link: Home
       shop_link: Shop
       settings_link: Settings

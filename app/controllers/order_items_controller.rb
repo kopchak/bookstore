@@ -1,5 +1,6 @@
 class OrderItemsController < ApplicationController
-  before_action :check_order_id, :current_order, only: [:index, :create]
+  load_and_authorize_resource
+  before_action :check_order_id, only:  :index
 
   def index
     @order_items = @order.order_items
@@ -13,14 +14,12 @@ class OrderItemsController < ApplicationController
   end
 
   def update
-    order_item = OrderItem.find(params[:id])
-    order_item.update(order_item_params)
+    @order_item.update(order_item_params)
     render nothing: true
   end
 
   def destroy
-    order_item = OrderItem.find(params[:id])
-    order_item.destroy
+    @order_item.destroy
     redirect_to order_items_path
   end
 
