@@ -59,7 +59,7 @@ RSpec.describe CustomersController, :type => :controller do
 
       it 'response redirect to edit_customer_path' do
         patch :update_address, id: @customer.id, shipping_address: attributes_for(:address)
-        expect(response).to redirect_to(edit_customer_path(@customer.id))
+        expect(response).to redirect_to(edit_customer_path)
       end
     end
 
@@ -98,7 +98,7 @@ RSpec.describe CustomersController, :type => :controller do
 
       it 'with invalid params' do
         patch :update_password, id: @customer.id, customer: { current_password: 'blabla', password: '12345678' }
-        expect(response).to redirect_to(edit_customer_path(@customer.id))
+        expect(response).to redirect_to(edit_customer_path)
       end
     end
 

@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       get    :complete
       patch  :add_discount
     end
-    delete :clear_cart,   on: :collection
+    delete :clear_cart, on: :collection
   end
 
   namespace :checkouts do
