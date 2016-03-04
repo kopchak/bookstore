@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe "Edit", js: true do
-  
-
   context 'when customer not sign in' do
     before do
       @order = create(:order)
@@ -150,7 +148,7 @@ describe "Edit", js: true do
           expect(page).to have_current_path(edit_customer_path)
         end
       end
-      
+
       it 'delete account' do
         find('#confirm_remove_account').click
         expect(page).to have_button(I18n.t('customers.edit.btn_rmv_account'))

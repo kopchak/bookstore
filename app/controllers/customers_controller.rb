@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
-  before_action :check_order_id, :get_order_info, only: :edit
   load_and_authorize_resource
+  before_action :current_order, only: :edit
 
   def edit
     @billing_address = current_user.billing_address

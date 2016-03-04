@@ -5,7 +5,10 @@
     = link_to t('.shop_link'), books_path, class: 'btn btn-primary'
   .cart
     %image{src: '/assets/shopping_cart.png'}
-    = link_to "#{t('.cart')}(#{@order_items_count}) #{number_to_currency(@order_items_price)}", order_items_path
+    - if @order
+      = link_to "#{t('.cart')}(#{@order.items_quantity}) #{number_to_currency(@order.items_price)}", order_items_path
+    - else
+      %h4{class: "cart_title"}= t('.cart_empty')
   .user_tools
     - if current_user
       = link_to t('.settings_link'), edit_customer_path, class: 'link_to_settings btn btn-primary'

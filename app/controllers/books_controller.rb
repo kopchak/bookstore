@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
-  before_action :check_order_id, :check_current_user, :get_order_info
   load_and_authorize_resource
-  
+  before_action :current_order
+
   def index
     @books = @books.page(params[:page]).per(6)
     @categories = Category.has_book

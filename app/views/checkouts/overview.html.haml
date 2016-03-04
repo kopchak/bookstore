@@ -57,11 +57,11 @@
             %h4{class: "order_item_qty_info_confirm"}= order_item.quantity
             %h4{class: "total_book_price"}= number_to_currency(order_item.price)
     .order_price_info_confirm
-      %h5{class: 'subtotal_overview'} #{t('.subtotal')} #{number_to_currency(@order_items_price)}
+      %h5{class: 'subtotal_overview'} #{t('.subtotal')} #{number_to_currency(@order.items_price)}
       %h5 #{t('.shipping')} #{number_to_currency(@order.delivery.price)}
       - if @order.discount
         %h5{class: 'discount_overview'} #{t('.discount')} #{number_to_currency(@order.discount.amount)}
     .order_total_price_info_confirm
       %h5 #{t('.order_total')} #{number_to_currency(@order.total_price)}
-  
+
     = button_to t('.place_order'), checkouts_confirmation_path, method: :get, class: 'place_order btn btn-primary'

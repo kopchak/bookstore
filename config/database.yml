@@ -3,16 +3,16 @@ development:
   encoding: unicode
   database: bookstore_development
   pool: 5
-  username: den
-  password: 'qwerty123'
+  username: postgres
+  password: 'root'
 
 test:
   adapter: postgresql
   encoding: unicode
   database: bookstore_test
   pool: 5
-  username: den
-  password: 'qwerty123'
+  username: postgres
+  password: 'root'
 
 production:
   adapter: postgresql
@@ -20,5 +20,5 @@ production:
   database: bookstore_production
   pool: 5
   host: localhost
-  username: den
-  password: 'qwerty123'
+  username: postgres
+  password: 'root'

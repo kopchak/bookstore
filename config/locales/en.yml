@@ -41,7 +41,7 @@ en:
       title_shop: The Bookstore
       home: Home
       shop: Shop
-      cart: Cart1
+      cart: "Cart:"
       settings: Settings
       sign_out: Sign out
     edit_address:
@@ -133,6 +133,7 @@ en:
       sign_in_link: Sign in
       sign_up_link: Sign up
       cart: "Cart:"
+      cart_empty: "Cart: empty"
     index:
       app_name: The Bookstore
       greeting: "Welcome to our amazing Bookstore! Choose anything you wish, we'll ship it anywhere!"

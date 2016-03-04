@@ -13,8 +13,9 @@ class Ability
       end
       can :read, Book
       can :show, Category
-      can [:add_discount, :clear_cart], Order, id: current_order.id
-      can :manage, OrderItem, order_id: current_order.id
+      can [:add_discount, :clear_cart], Order, id: current_order.id if current_order
+      can :create, OrderItem
+      can [:index, :update, :destroy], OrderItem, order_id: current_order.id if current_order
       can :read, Rating, check: true
     end
   end

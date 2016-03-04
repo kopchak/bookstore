@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
-  before_action :check_order_id, :check_current_user, only: :index
   load_and_authorize_resource
-  before_action :get_order_info, only: [:index, :show]
+  before_action :current_order, only: [:index, :show]
+  before_action :assign_order_to_user, only: :index
 
   def index
-    orders = Order.accessible_by(current_ability)
+    orders = current_user.orders.accessible_by(current_ability)
     @orders_in_progress = orders.in_progress
     @orders_in_queue = orders.in_queue
     @orders_in_delivery = orders.in_delivery
@@ -34,5 +34,11 @@ class OrdersController < ApplicationController
   private
   def discount_params
     params.require(:discount).permit(:code)
+  end
+
+  def assign_order_to_user
+    if current_order
+      current_user.orders << current_order
+    end
   end
 end

@@ -1,7 +1,6 @@
 class CheckoutsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :get_order_info, only: [:edit_address, :choose_delivery, :confirm_payment, :overview]
-  before_action :current_order,  only: [:update_address, :set_delivery, :update_credit_card, :confirmation]
+  before_action :current_order
 
   def edit_address
   end

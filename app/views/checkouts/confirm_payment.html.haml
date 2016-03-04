@@ -24,7 +24,7 @@
         = link_to t('.whats_cvv'), t('.whats_cvv_link'), target: '_blank', class: 'link_credit_card_info'
       = f.submit t('.submit'), class: 'btn btn-primary'
     .order_summary_info_credit_card
-      %h5 #{t('.item_total')} #{number_to_currency(@order_items_price)}
+      %h5 #{t('.item_total')} #{number_to_currency(@order.items_price)}
       %h5{class: 'delivery_price'} #{t('.shipping')} #{number_to_currency(@order.delivery.price)}
       - if @order.discount
         %h5{class: 'discount_cc'} #{t('.discount')} #{number_to_currency(@order.discount.amount)}

@@ -1,6 +1,6 @@
 class OrderItemsController < ApplicationController
+  before_action :create_order, only: :create
   load_and_authorize_resource
-  before_action :check_order_id, only:  :index
 
   def index
     @order_items = @order.order_items
@@ -26,5 +26,16 @@ class OrderItemsController < ApplicationController
   private
   def order_item_params
     params.require(:order_item).permit(:quantity, :book_id, :price)
+  end
+
+  def create_order
+    unless cookies[:order_id]
+      if current_user
+        order = current_user.orders.create
+        cookies[:order_id] = order.id
+      else
+        cookies[:order_id] = Order.create.id
+      end
+    end
   end
 end

@@ -27,7 +27,6 @@ describe "Show", js: true do
 
     context 'can view the contents' do
       it 'without discount' do
-        # page.save_screenshot('screenshot.png')
         expect(page).to have_content(I18n.t('order_items.header.title_shop'))
         expect(page).to have_content(I18n.t('order_items.header.home_link'))
         expect(page).to have_content(I18n.t('order_items.header.shop_link'))

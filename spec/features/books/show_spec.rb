@@ -59,6 +59,10 @@ describe "Show", js: true do
       end
 
       it 'cart' do
+        order = create(:order)
+        create(:order_item, order_id: order.id)
+        create_cookie(:order_id, order.id)
+        visit(books_path)
         click_link('Cart')
         expect(page).to have_current_path(order_items_path)
         expect(page).to have_content(I18n.t('order_items.index.cart'))
@@ -152,6 +156,10 @@ describe "Show", js: true do
       end
 
       it 'cart' do
+        order = create(:order)
+        create(:order_item, order_id: order.id)
+        create_cookie(:order_id, order.id)
+        visit(books_path)
         click_link('Cart')
         expect(page).to have_current_path(order_items_path)
         expect(page).to have_content(I18n.t('order_items.index.cart'))

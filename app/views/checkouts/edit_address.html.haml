@@ -38,9 +38,7 @@
           = check_box_tag 'use_billing_address', true, true, class: 'checkbox_use_billing'
           %p= t('.use_bill_addr')
     .order_summary_info
-      %h5 #{t('.item_total')} #{number_to_currency(@order_items_price)}
+      %h5 #{t('.item_total')} #{number_to_currency(@order.items_price)}
       - if @order.discount
         %h5{class: 'discount'} #{t('.discount')} #{number_to_currency(@order.discount.amount)}
-        %h5 #{t('.order_total')} #{number_to_currency(@order.total_price)}
-      - else
-        %h5 #{t('.order_total')} #{number_to_currency(@order_items_price)}
+      %h5 #{t('.order_total')} #{number_to_currency(@order.items_price)}

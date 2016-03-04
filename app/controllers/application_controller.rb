@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   after_filter :store_location
 
   def store_location
-    return unless request.get? 
+    return unless request.get?
     if (request.path != "/customers/sign_in" &&
         request.path != "/customers/sign_up" &&
         request.path != "/customers/sign_out" &&
@@ -31,24 +31,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order
-    @order ||= Order.find(cookies[:order_id])
-  end
-
-  def check_order_id
-    unless cookies[:order_id]
-      cookies[:order_id] = Order.create.id
+    begin
+      @order ||= Order.find(cookies[:order_id])
+    rescue
+      @order = nil
     end
-  end
-
-  def check_current_user
-    if current_user
-      current_user.orders << current_order
-    end
-  end
-
-  def get_order_info
-    @order_items_count = current_order.items_quantity
-    @order_items_price = current_order.items_price
   end
 
   private

@@ -46,7 +46,6 @@ describe "Edit address", js: true do
         expect(page).not_to have_selector('.shipping_address_form')
         expect(page).not_to have_content(I18n.t('checkouts.edit_address.discount'))
         expect(page).not_to have_selector('.discount')
-        page.save_screenshot('screenshot.png')
       end
 
       it 'with discount' do
